@@ -2,11 +2,11 @@
 import React, {useRef, useEffect} from "react"; // Importa React y hooks
 import { Canvas } from "@react-three/fiber"; // Importa funcionalidades de react-three/fiber
 import { PerspectiveCamera } from "@react-three/drei"; // Importa PerspectiveCamera desde @react-three/drei
-import MapConCuadricula from "./components/mapConCuadricula";
+import MapConCuadricula from "./component/mapConCuadricula.jsx";
 import { AxesHelper } from "three";
-import Cubo from "./components/cubo";
-import Punto from "./components/punto";
-import Dropdown from "./components/dropdown";
+import Cubo from "./component/cubo.jsx"
+import Punto from "./component/punto.jsx";
+import Dropdown from "./component/dropdown.jsx";
 
 
 let objetos = {

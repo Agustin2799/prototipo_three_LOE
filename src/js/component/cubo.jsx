@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Mesh, BoxGeometry, MeshBasicMaterial } from "three";
-import Dropdown from "./dropdown";
+
 // Componente del cubo
 const Cubo = ({position, dimentions, color}) => {
     const cubeRef = useRef();               
