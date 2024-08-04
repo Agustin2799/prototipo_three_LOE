@@ -1,20 +1,47 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			posicionCamara: {
+				x: 0,
+				y: 0,
+				z: 100
+			},
 		},
 		actions: {
+			moveCamara: (x, y) => {
+				const store = getStore()
+				setStore({
+					posicionCamara: {
+						...store.posicionCamara,
+						x: store.posicionCamara.x + x,
+						y: store.posicionCamara.y + y
+					}
+				});
+			},
+			zoomCamara: (z) => {
+				const store = getStore()
+				if (store.posicionCamara.z >= 80) {
+					setStore({
+						posicionCamara: {
+							...store.posicionCamara,
+							z: store.posicionCamara.z + z
+						}
+					});
+				}
+			},
+			coordenadas: () => {
+				const store = getStore();
+				const unidades = store.plano.ladosYDivisiones / 2;
+
+				let coordenadas = [];
+				for (let x = -unidades + 1; x <= unidades - 1; x++) {
+					for (let y = -unidades + 1; y <= unidades - 1; y++) {
+						coordenadas = [...coordenadas, { x: x, y: y }];
+					}
+				}
+				setStore({ plano: { ...store.plano, puntos: coordenadas } });
+			},
+			
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");

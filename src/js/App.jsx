@@ -1,86 +1,105 @@
-// Importaciones necesarias para el componente
-import React, {useRef, useEffect} from "react"; // Importa React y hooks
-import { Canvas } from "@react-three/fiber"; // Importa funcionalidades de react-three/fiber
-import { PerspectiveCamera } from "@react-three/drei"; // Importa PerspectiveCamera desde @react-three/drei
+import React, { useRef, useEffect, useContext } from "react";
+import { Canvas } from "@react-three/fiber";
+import { PerspectiveCamera } from "@react-three/drei";
+import { AxesHelper, Raycaster, Vector2 } from "three";
 import MapConCuadricula from "./component/mapConCuadricula.jsx";
-import { AxesHelper } from "three";
-import Cubo from "./component/cubo.jsx"
-import Punto from "./component/punto.jsx";
-import Dropdown from "./component/dropdown.jsx";
+import { Context } from "./store/appContext.js";
 
-
-let objetos = {
-  plano: {
-    ladosYDivisiones: 20,
-    puntos: []
-  },
-  cubos: [
-    { position: [5, 4, 0], dimentions: [0.5, 0.5, 1], color: "red" },
-    { position: [3, 3, 0], dimentions: [0.5, 0.5, 1], color: "blue" },
-    { position: [1, 7, 0], dimentions: [0.5, 0.5, 1], color: "yellow" },
-    { position: [9, 9, 0], dimentions: [0.5, 0.5, 1], color: "purple" },
-  ],
-};
-const unidades = objetos.plano.ladosYDivisiones/2;
-
-  for (let x = -unidades + 1; x <= unidades - 1; x++) {
-    for (let y = -unidades + 1; y <= unidades - 1; y++) {
-      objetos.plano.puntos = [...objetos.plano.puntos, { x: x, y: y }];
-    }
-  }
-
-console.log(objetos.plano.puntos)
-
+const raycaster = new Raycaster();
+const mouse = new Vector2();
 
 const Ejes = () => {
-  const ejes = useRef()
+  const ejes = useRef();
   useEffect(() => {
-    const xyzEjes = new AxesHelper(10)
-    ejes.current.add(xyzEjes)
-    
-  },[])
-  return <group ref={ejes} />
-}
+    const xyzEjes = new AxesHelper(300);
+    ejes.current.add(xyzEjes);
+    console.log("Posición inicial de ejes:", ejes.current.position);
+  }, []);
+  return <group ref={ejes} />;
+};
 
-// Función para convertir grados a radianes
 const degreesToRadians = (degrees) => degrees * (Math.PI / 180);
-// Componente principal de la aplicación
+
+const onMouseClick = (event, camera, map) => {
+  // Obtén las dimensiones del canvas
+  const canvas = event.target;
+  const rect = canvas.getBoundingClientRect();
+
+  // Calcula las coordenadas del ratón en relación con el canvas
+  mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+  mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;g
+
+  if (camera && map && map.current) {
+    console.log("Posición de la cámara:", camera.position);
+    console.log("Objetos en map.current:", map.current.getGroup().children);
+    raycaster.setFromCamera(mouse, camera);
+
+    // Verifica que map.current.children contenga los objetos esperados
+    console.log("Objetos en map.current:", map.current.getGroup().children);
+
+    // Prueba con intersectObjects usando los objetos del grupo
+    const objects = map.current.getGroup().children;
+    if (objects.length > 0) {
+      const intersects = raycaster.intersectObjects(objects);
+      console.log("Intersecciones encontradas:", intersects);
+      if (intersects.length > 0) {
+        const firstIntersect = intersects[0];
+        console.log("Posición del objeto:", firstIntersect.point);
+        console.log("Objeto intersectado:", firstIntersect.object.position);
+      }
+    } else {
+      console.log("No hay objetos en el grupo para intersecar.");
+    }
+  } else {
+    console.error("No se pudo acceder a la referencia del mapa o la cámara.");
+  }
+};
+
 function App() {
-  // Devolver el Canvas de react-three/fiber, que contiene los controles de la cámara y el plano con la cuadrícula
+  const  planeRef  = useRef();
+  const { store } = useContext(Context);
+  const cameraRef = useRef();
+
+  useEffect(() => {
+    const handleClick = (event) =>
+      onMouseClick(event, cameraRef.current, planeRef);
+    window.addEventListener("click", handleClick);
+    return () => {
+      window.removeEventListener("click", handleClick);
+    };
+  }, []);
+
+  const posicionCamara = [
+    store.posicionCamara.x,
+    store.posicionCamara.y,
+    store.posicionCamara.z,
+  ];
+
   return (
     <>
-      <Dropdown
-        options={["Mover", "Custodiar", "Atacar"]}
-        position={[123,123]}
-        visible={true}
-      />
-      <Canvas>
-        {/* Configura la cámara con posición y otras propiedades */}
-        <Ejes />
-        <PerspectiveCamera
-          makeDefault
-          position={[4, -8, 8]} //[x(rojo) y(Verde) z(azul)] y es arriba y abajo y z es en profundida.
-          fov={50}
-          rotation={[degreesToRadians(50), degreesToRadians(-3), 0]}
-        />
-        <MapConCuadricula ladosYDivisiones={objetos.plano.ladosYDivisiones} />
-        {objetos.plano.puntos.map((element, index) => {
-          return <Punto position={element} key={index} />;
-        })}
-        {objetos.cubos.map((element, index) => {
-          return (
-            <Cubo
-              position={element.position}
-              dimentions={element.dimentions}
-              color={element.color}
-              key={index}
-            />
-          );
-        })}
-      </Canvas>
+      <div id="menu">
+        <p>Hola soy un p</p>
+      </div>
+      <div id="canvasContainer">
+        <Canvas>
+          <ambientLight intensity={1} />
+          <MapConCuadricula ref={planeRef} />
+          <Ejes />
+          <PerspectiveCamera
+            ref={cameraRef}
+            makeDefault
+            position={posicionCamara}
+            fov={50}
+            rotation={[
+              degreesToRadians(0),
+              degreesToRadians(0),
+              degreesToRadians(0),
+            ]}
+          />
+        </Canvas>
+      </div>
     </>
   );
 }
 
-// Exportar el componente App como el componente por defecto del módulo
 export default App;

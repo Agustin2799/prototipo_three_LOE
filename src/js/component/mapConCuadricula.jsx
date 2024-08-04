@@ -1,49 +1,63 @@
-import React, {useEffect, useRef} from "react";
+import React, {
+  useRef,
+  useEffect,
+  forwardRef,
+  useImperativeHandle,
+} from "react";
 import {
-  PlaneGeometry, // Geometría para crear un plano
-  MeshBasicMaterial, // Material básico para el plano
-  WireframeGeometry, // Geometría de alambre para mostrar la cuadrícula
-  LineSegments, // Segmentos de línea para la cuadrícula
-  LineBasicMaterial, // Material básico de línea para la cuadrícula
-  Mesh, // Malla para combinar geometría y material
+  PlaneGeometry,
+  MeshStandardMaterial,
+  WireframeGeometry,
+  LineSegments,
+  LineBasicMaterial,
+  Mesh,
+  TextureLoader,
+  LinearMipMapLinearFilter,
+  LinearFilter,
 } from "three";
+import prototipo from "../../img/PrototipoConFiltro.jpg";
 
-// Componente que crea un plano con una cuadrícula
-const MapConCuadricula = ({ ladosYDivisiones }) => {
-  const planeRef = useRef(); // Referencia para el grupo que contiene el plano y la cuadrícula
+const MapConCuadricula = forwardRef((props, ref) => {
+  const planeRef = useRef();
 
-  // useEffect para ejecutar código después del renderizado inicial
+  useImperativeHandle(ref, () => ({
+    getGroup() {
+      return planeRef.current;
+    },
+  }));
+
   useEffect(() => {
-    // Crear la geometría del plano: 15 unidades de ancho, 15 unidades de alto, 15 segmentos en ambas direcciones
-    const geometry = new PlaneGeometry(
-      ladosYDivisiones,
-      ladosYDivisiones,
-      ladosYDivisiones,
-      ladosYDivisiones
-    );
-    // Crear un material básico de color verde y visible en ambas caras
-    const material = new MeshBasicMaterial({ color: "green", side: 2 });
+    if (!planeRef.current) return;
 
-    // Crear la geometría de alambre para el plano
+    const geometry = new PlaneGeometry(160, 120, 16, 12);
+    const textureLoader = new TextureLoader();
+    const texture = textureLoader.load(prototipo);
+    texture.minFilter = LinearMipMapLinearFilter;
+    texture.magFilter = LinearFilter;
+    texture.anisotropy = 64;
+
+    const material = new MeshStandardMaterial({ map: texture });
     const wireframe = new WireframeGeometry(geometry);
-    // Crear el material de línea para la cuadrícula
     const lineMaterial = new LineBasicMaterial({ color: "black" });
-    // Crear los segmentos de línea utilizando la geometría de alambre y el material de línea
     const lineSegments = new LineSegments(wireframe, lineMaterial);
-
-    // Crear la malla combinando la geometría del plano y el material
     const mesh = new Mesh(geometry, material);
-    //Establecemos el orden de renderizado
-    mesh.renderOrder = 0;
-    // Agregar la malla al grupo de referencias
-    planeRef.current.add(mesh);
-    // Agregar los segmentos de línea (cuadrícula) al grupo de referencias
-    planeRef.current.add(lineSegments);
-  }, []); // El array vacío como segundo argumento asegura que este efecto se ejecute solo una vez
 
-  // Devolver un grupo que contiene el plano y la cuadrícula
+    mesh.renderOrder = 0;
+    planeRef.current.add(mesh);
+    //planeRef.current.add(lineSegments);
+     console.log("Objetos añadidos a planeRef:", planeRef.current.children);
+
+    return () => {
+      planeRef.current.remove(mesh);
+      planeRef.current.remove(lineSegments);
+      geometry.dispose();
+      material.dispose();
+      wireframe.dispose();
+      lineMaterial.dispose();
+    };
+  }, []);
+
   return <group ref={planeRef} />;
-};
+});
 
 export default MapConCuadricula;
-

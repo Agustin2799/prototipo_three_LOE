@@ -1,0 +1,166 @@
+{
+    "mapa": {
+        "id": null,
+        "name": null,
+        "img": "img Inkranate",
+        "dimenciones": {
+            "largo": "...px",
+            "ancho": "...px"
+        },
+        "territorios_terrestres": [
+            {
+                "tipo": null,
+                "coordenadas": {
+                    "x": null,
+                    "y": null
+                },
+                "area": null,
+                "gobernado_por": [
+                    null,
+                    null
+                ],
+                "en_conflicto": null,
+                "conecciones": [
+                    {
+                        "x": null,
+                        "y": null,
+                        "distancia": null
+                    }
+                ],
+                "poblacion": null,
+                "unidades": {
+                    "soldado": 10,
+                    "arqueros": 20,
+                    "paladines": 5
+                },
+                "unidades_de_mapa": {
+                    "generales": [],
+                    "carretas": [],
+                    "mercantes": []
+                },
+                "edificios": {
+                    "torres": [],
+                    "casas": [],
+                    "cuarteles": [],
+                    "puestos_comerciales": []
+                },
+                "terreno": [
+                    null,
+                    null,
+                    null
+                ],
+                "de_noche": null,
+                "clima": [
+                    null,
+                    null,
+                    null
+                ],
+                "recursos_naturales": [
+                    null,
+                    null,
+                    null
+                ]
+            }
+        ],
+        "territorios_acuaticos": [
+            {
+                "tipo": null,
+                "coordenadas": {
+                    "x": null,
+                    "y": null
+                },
+                "area": null,
+                "gobernado_por": [
+                    null,
+                    null
+                ],
+                "en_conflicto": null,
+                "conecciones": [
+                    {
+                        "x": null,
+                        "y": null,
+                        "distancia": null
+                    }
+                ],
+                "unidades_de_mapa": {
+                    "pesqueros": [],
+                    "navios_ligeros": [],
+                    "navios_pesados": [],
+                    "cargueros": []
+                },
+                "tipo_de_aguas": [
+                    null,
+                    null,
+                    null
+                ],
+                "de_noche": null,
+                "clima": [
+                    null,
+                    null,
+                    null
+                ],
+                "recursos_naturales": [
+                    null,
+                    null,
+                    null
+                ]
+            }
+        ],
+        "territorios_costeros": [
+            {
+                "tipo": null,
+                "coordenadas": {
+                    "x": null,
+                    "y": null
+                },
+                "area": null,
+                "gobernado_por": [
+                    null,
+                    null
+                ],
+                "en_conflicto": null,
+                "conecciones": [
+                    {
+                        "x": null,
+                        "y": null,
+                        "distancia": null
+                    }
+                ],
+                "poblacion": null,
+                "unidades":{
+                    "soldado": 10,
+                    "arqueros": 20,
+                    "paladines": 5
+                },
+                "unidades_de_mapa": {
+                    "generales": [],
+                    "carretas": [],
+                    "mercantes": []
+                },
+
+                "edificios": {
+                    "torres": [],
+                    "casas": [],
+                    "puertos": [],
+                    "puestos_comerciales": []
+                },
+                "terreno": [
+                    null,
+                    null,
+                    null
+                ],
+                "clima": [
+                    null,
+                    null,
+                    null
+                ],
+                "de_noche": null,
+                "recursos_naturales": [
+                    null,
+                    null,
+                    null
+                ]
+            }
+        ]
+    }
+}
