@@ -4,17 +4,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 			posicionCamara: {
 				x: 0,
 				y: 0,
-				z: 100
+				z: 80
 			},
 		},
 		actions: {
-			moveCamara: (x, y) => {
+			moveCamera: (x, y) => {
 				const store = getStore()
+				
 				setStore({
 					posicionCamara: {
-						...store.posicionCamara,
-						x: store.posicionCamara.x + x,
-						y: store.posicionCamara.y + y
+						...store.posicionCamara, x: x,
+						y: y
 					}
 				});
 			},
