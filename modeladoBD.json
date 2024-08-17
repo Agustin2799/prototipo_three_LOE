@@ -9,6 +9,7 @@
         },
         "territorios_terrestres": [
             {
+                "id": null,
                 "tipo": null,
                 "coordenadas": {
                     "x": null,
@@ -64,6 +65,7 @@
         ],
         "territorios_acuaticos": [
             {
+                "id": null,
                 "tipo": null,
                 "coordenadas": {
                     "x": null,
@@ -108,6 +110,7 @@
         ],
         "territorios_costeros": [
             {
+                "id": null,
                 "tipo": null,
                 "coordenadas": {
                     "x": null,

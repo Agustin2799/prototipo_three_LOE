@@ -1,3 +1,5 @@
+
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -9,6 +11,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 			coordsClickeadas: {
 				x: null,
 				y: null
+			},
+			datosDelJuego: {
+				mapa: {
+					id: null,
+					name: null,
+					img: "img Inkranate",
+					dimenciones: {
+						largo: "...px",
+						ancho: "...px"
+					},
+					territorios_terrestres: [],
+					territorios_acuaticos: [],
+					territorios_costeros: []
+				}
 			}
 		},
 		actions: {
@@ -17,10 +33,47 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({
 					...store,
 					coordsClickeadas: {
-						x: parseFloat(x.toFixed(1)), y: parseFloat(y.toFixed(1))
+						x: parseFloat(x.toFixed(0)), y: parseFloat(y.toFixed(0))
 				}})
 			},
-			moveCamera: (x, y) => {
+			agregarTerritorioTerrestre: (origen, conexiones) => {
+				const store = getStore();
+				const nuevoId = store.datosDelJuego.mapa.territorios_terrestres.length + 1;
+
+				const newTerr = {
+					id: nuevoId, // ID incremental
+					tipo: "terrestre", // Suponiendo que es un territorio terrestre
+					coordenadas: {
+						x: origen.x,
+						y: origen.y
+					},
+					conexiones: conexiones.map(conexion => ({
+						x: conexion.x,
+						y: conexion.y,
+						distancia: parseFloat(Math.sqrt(
+							Math.pow(conexion.x - origen.x, 2) +
+							Math.pow(conexion.y - origen.y, 2)
+						).toFixed(2))// Cálculo de distancia entre origen y la conexión
+					}))
+				};
+
+				// Actualiza el store con el nuevo territorio
+				setStore({
+					...store,
+					datosDelJuego: {
+						...store.datosDelJuego,
+						mapa: {
+							...store.datosDelJuego.mapa,
+							territorios_terrestres: [
+								...store.datosDelJuego.mapa.territorios_terrestres,
+								newTerr
+							]
+						}
+					}
+				});
+				console.log(store.datosDelJuego.mapa.territorios_terrestres)
+			},
+			moveCamera: (x, y) => { //En desuso
 				const store = getStore()
 				
 				setStore({
@@ -30,7 +83,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				});
 			},
-			zoomCamara: (z) => {
+			zoomCamara: (z) => { //En desuso
 				const store = getStore()
 				if (store.posicionCamara.z >= 80) {
 					setStore({
@@ -41,7 +94,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 				}
 			},
-			coordenadas: () => {
+			coordenadas: () => { //En desuso
 				const store = getStore();
 				const unidades = store.plano.ladosYDivisiones / 2;
 
@@ -52,6 +105,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				}
 				setStore({ plano: { ...store.plano, puntos: coordenadas } });
+				console.log('coordendas en uso')
 			},
 			
 			// Use getActions to call a function within a fuction

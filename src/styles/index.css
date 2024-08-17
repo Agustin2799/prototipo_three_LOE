@@ -10,21 +10,25 @@
 
 #menu {
     height: 100vh;
-    width: 20vw;
+    width: 25vw;
+     overflow-y: auto;
 }
 
 #canvasContainer {
     height: 100vh;
-    width: 80vw;
+    width: 75vw;
 }
 #menu{
     background-color: #031633 !important;
 }
-.xy{
+.color2{
     color: #ff9f43 !important;
 }
-.title{
+.color1{
     color: #01a3a4 !important;
+}
+.color3{
+    color: crimson;
 }
 input[type="checkbox"]:checked {
   background-color: #06d892 !important; /* Cambiar el color de fondo del checkbox */
@@ -35,4 +39,19 @@ input[type="checkbox"]{
   background-color: transparent !important; /* Cambiar el color de fondo del checkbox */
   border-color: #005639!important; /* Cambiar el color del borde del checkbox */
   box-shadow: none !important;
+}
+button {
+    height: 20px !important;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+ display: none;
+}
+.delete:hover {
+    background-color: crimson !important;
+    border: crimson;
+}
+.add:hover {
+     background-color: #02724d !important;
+     border: #02724d;
 }

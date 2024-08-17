@@ -66,7 +66,7 @@ const MapConCuadricula = forwardRef((props, ref) => {
     planeRef.current.add(mesh);
 
     // Muestra en consola los objetos hijos añadidos a planeRef (incluyendo la malla)
-    console.log("Objetos añadidos a planeRef:", planeRef.current.children);
+    // console.log("Objetos añadidos a planeRef:", planeRef.current.children);
 
     // Cleanup function que se ejecuta cuando el componente se desmonta o cuando el efecto se vuelve a ejecutar
     return () => {

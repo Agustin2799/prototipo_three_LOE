@@ -165,7 +165,9 @@ function App() {
         cameraRef.current,
         planeRef.current
       );
-      actions.changeCoordsClickeadas(coords.x, coords.y);
+      if (coords) {
+        actions.changeCoordsClickeadas(coords.x, coords.y);
+     }
     };
 
     const canvas = canvasContainer.current;

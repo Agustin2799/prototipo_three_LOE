@@ -11,6 +11,9 @@ dimenciones -> objeto con propiedades 'largo' y 'ancho' que indican las dimecion
 ## territorios_terrestres
     array que contiene un objeto con las siguientes propiedades:
 
+## id:
+    identificado único en funcion al tipo de territorio (acuático, terrestre, costero), nunca se deberá repetir el id en el conjunto de un mismo tipo de tereritorio.
+
 ## tipo:
     indica el estatus del territorio en sí, podría ser inhabitado, pueblo, ciudad, capital, etc.
 
