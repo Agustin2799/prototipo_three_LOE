@@ -6,15 +6,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 				y: 0,
 				z: 80
 			},
+			coordsClickeadas: {
+				x: null,
+				y: null
+			}
 		},
 		actions: {
+			changeCoordsClickeadas: (x, y) => {
+				const store = getStore()
+				setStore({
+					...store,
+					coordsClickeadas: {
+						x: parseFloat(x.toFixed(1)), y: parseFloat(y.toFixed(1))
+				}})
+			},
 			moveCamera: (x, y) => {
 				const store = getStore()
 				
 				setStore({
 					posicionCamara: {
-						...store.posicionCamara, x: x,
-						y: y
+						...store.posicionCamara, x: store.posicionCamara.x + x,
+						y: store.posicionCamara.y + y
 					}
 				});
 			},

@@ -1,10 +1,11 @@
 import React, { useRef, useEffect, useContext } from "react";
 import { Canvas } from "@react-three/fiber";
-import { PerspectiveCamera } from "@react-three/drei";
+import { PerspectiveCamera, MapControls } from "@react-three/drei";
 import { Raycaster, Vector2 } from "three";
 import MapConCuadricula from "./component/mapConCuadricula.jsx";
 import Ejes from "./component/ejes.jsx";
 import { Context } from "./store/appContext.js";
+import Menu from "./component/menu.jsx";
 
 /* Sobre Raycaster
 
@@ -80,7 +81,7 @@ const obtenerCoordenadasDelMapa = (event, camera, map) => {
   /* Sobre runRaycaster()
 
 Verificación de Referencias:
-  Primero, el código verifica si camera, map, y map.current están definidos y no son nulos. Si alguna de estas referencias no está disponible, el código muestra un mensaje de error en la consola y no realiza más acciones.
+  Primero, el código verifica si camera y map están definidos y no son nulos. Si alguna de estas referencias no está disponible, el código muestra un mensaje de error en la consola y no realiza más acciones.
 
 Configuración del Raycaster:
   Si las referencias son válidas, se configura el raycaster utilizando la cámara y las coordenadas del mouse (coordenadasMouse). Esto permite determinar qué objetos en la escena están siendo apuntados por el raycast generado a partir de la posición del mouse.
@@ -101,7 +102,7 @@ Manejo de Referencias No Válidas:
 
 */
   const runRaycaster = () => {
-    if (camera && map && map.current) {
+    if (camera && map) {
       // console.log("Posición de la cámara:", camera.position);
       // console.log("Objetos en map.current:", map.current.getGroup().children);
       raycaster.setFromCamera(coordenadasMouse, camera);
@@ -110,15 +111,15 @@ Manejo de Referencias No Válidas:
       // console.log("Objetos en map.current:", map.current.getGroup().children);
 
       // Prueba con intersectObjects usando los objetos del grupo
-      const objects = map.current.getGroup().children;
+      const objects = map.getGroup().children;
       if (objects.length > 0) {
         const intersects = raycaster.intersectObjects(objects);
         // console.log("Intersecciones encontradas:", intersects);
         if (intersects.length > 0) {
           const firstIntersect = intersects[0];
           // console.log("Posición del mapa clickeada:", firstIntersect.point);
+          //console.log(firstIntersect.point);
           return firstIntersect.point;
-          // console.log(firstIntersect.point);
         }
       } else {
         console.log("No hay objetos en el grupo para intersecar.");
@@ -127,7 +128,8 @@ Manejo de Referencias No Válidas:
       console.error("No se pudo acceder a la referencia del mapa o la cámara.");
     }
   };
-  runRaycaster();
+
+  return runRaycaster();
 };
 
 function App() {
@@ -137,49 +139,43 @@ function App() {
    Esto es útil cuando necesitas interactuar con el DOM o con instancias de componentes de manera directa,
    sin necesidad de pasar a través del flujo habitual de props y estado.
    */
-
   // Referencia al componente MapConCuadricula
   const planeRef = useRef();
   // Acceso al contexto de la aplicación
   const { store, actions } = useContext(Context);
   // Referencia a la cámara PerspectiveCamera
   const cameraRef = useRef();
+  //Referencia al canvas para los eventos
+  const canvasContainer = useRef();
 
   /* Sobre el este useEffect 
-     useEffect se ejecuta después del renderizado del componente.
-     En este efecto, se configuran los manejadores de eventos para el clic y el movimiento del puntero.
+
+    Este useEffect permite que cada vez que un usuario haga clic en el canvas
+    se calculen las coordenadas del clic en el mapa 3D, y estas coordenadas se
+    almacenen en el estado global de la aplicación. 
+     
+    También asegura que el manejador de eventos se limpie 
+    correctamente cuando el componente se desmonte.
+
      */
   useEffect(() => {
-    const arrastrarCamara = (event) => {
-      event.preventDefault(); // Previene el menú contextual predeterminado
-      console.log("arrastrando");
-      // Obtiene las coordenadas del mapa a partir del evento y las referencias
-      const coordenadas = obtenerCoordenadasDelMapa(
+    const click = (event) => {
+      const coords = obtenerCoordenadasDelMapa(
         event,
         cameraRef.current,
-        planeRef
+        planeRef.current
       );
-      console.log(coordenadas.x, coordenadas.y);
-      // Llama a la acción para mover la cámara (comentado por ahora)
-      // actions.moveCamera(coordenadas.x, coordenadas.y);
+      actions.changeCoordsClickeadas(coords.x, coords.y);
     };
 
-    const onClick = (event) => {
-      obtenerCoordenadasDelMapa(event, cameraRef.current, planeRef);
-      console.log("click");
-      // Agrega el manejador de eventos para el movimiento del puntero
-      window.addEventListener("pointermove", arrastrarCamara);
-    };
+    const canvas = canvasContainer.current;
 
-    // Agrega el manejador de eventos para el clic
-    window.addEventListener("click", onClick);
+    canvas.addEventListener("mousemove", click);
 
-    // Limpia los manejadores de eventos cuando el componente se desmonte
     return () => {
-      window.removeEventListener("click", onClick);
-      window.removeEventListener("pointermove", arrastrarCamara);
+      canvas.removeEventListener("mousemove", click);
     };
-  }, []); // Dependencias vacías, el efecto se ejecuta solo una vez después del primer renderizado
+  }, []);
 
   /* Sobre las coordenadas de la cámara
    Se obtienen las coordenadas actuales de la cámara desde el estado global.
@@ -194,15 +190,14 @@ function App() {
   return (
     <>
       <div id="menu">
-        {/* Mensaje o elemento de menú */}
-        <p>Hola soy un p</p>
+        <Menu />
       </div>
-      <div id="canvasContainer">
-        <Canvas>
+      <div id="canvasContainer" ref={canvasContainer}>
+        <Canvas style={{ background: "black" }}>
           {/* Luz ambiental para la escena */}
           <ambientLight intensity={1} />
           {/* Componente con la cuadrícula del mapa */}
-          <MapConCuadricula ref={planeRef} />{" "}
+          <MapConCuadricula ref={planeRef} />
           {/* Componente para mostrar los ejes */}
           <Ejes />
           {/* Configuración de la cámara con posición, campo de visión y rotación */}
@@ -212,6 +207,17 @@ function App() {
             position={posicionCamara}
             fov={50}
             rotation={[0, 0, 0]}
+          />
+          <MapControls
+            enableDamping
+            dampingFactor={0.3}
+            zoomSpeed={1.8}
+            minDistance={10}
+            maxDistance={500}
+            enableRotate={false} // Desactiva la rotación si solo quieres paneo y zoom
+            enableZoom={true} // Asegúrate de que el zoom solo responda al scroll
+            screenSpacePanning={true} // Paneo en el espacio de la pantalla, permite que el movimiento en Y funcione
+            target={[0, 0, 0]} // Configura el punto de interés
           />
         </Canvas>
       </div>

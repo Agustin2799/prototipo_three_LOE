@@ -17,4 +17,22 @@
     height: 100vh;
     width: 80vw;
 }
-
+#menu{
+    background-color: #031633 !important;
+}
+.xy{
+    color: #ff9f43 !important;
+}
+.title{
+    color: #01a3a4 !important;
+}
+input[type="checkbox"]:checked {
+  background-color: #06d892 !important; /* Cambiar el color de fondo del checkbox */
+  border-color: #005639!important; /* Cambiar el color del borde del checkbox */
+  box-shadow: none !important;
+}
+input[type="checkbox"]{
+  background-color: transparent !important; /* Cambiar el color de fondo del checkbox */
+  border-color: #005639!important; /* Cambiar el color del borde del checkbox */
+  box-shadow: none !important;
+}
