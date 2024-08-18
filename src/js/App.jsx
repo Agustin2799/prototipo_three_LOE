@@ -6,6 +6,7 @@ import MapConCuadricula from "./component/mapConCuadricula.jsx";
 import Ejes from "./component/ejes.jsx";
 import { Context } from "./store/appContext.js";
 import Menu from "./component/menu.jsx";
+import DibujaPunto from "./component/dibujaPunto.jsx";
 
 /* Sobre Raycaster
 
@@ -148,6 +149,11 @@ function App() {
   //Referencia al canvas para los eventos
   const canvasContainer = useRef();
 
+  //Vigilamos e imprimimos en la consola cualquier cambio en el store
+  useEffect(() => {
+    console.log(store)
+  },[store])
+
   /* Sobre el este useEffect 
 
     Este useEffect permite que cada vez que un usuario haga clic en el canvas
@@ -202,6 +208,8 @@ function App() {
           <MapConCuadricula ref={planeRef} />
           {/* Componente para mostrar los ejes */}
           <Ejes />
+          {/* Dibuja las ubicaciones en el mapa */}
+          <DibujaPunto territorios={store.datosDelJuego.mapa.territorios_terrestres} />
           {/* Configuración de la cámara con posición, campo de visión y rotación */}
           <PerspectiveCamera
             ref={cameraRef}

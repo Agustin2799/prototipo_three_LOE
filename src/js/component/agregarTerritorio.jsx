@@ -15,7 +15,10 @@ const AgregarTerritorio = ({ mostrar }) => {
   // Maneja los cambios en los inputs del origen, actualizando su estado.
   const cambioDeOrigen = (e) => {
     const { name, value } = e.target;
-    setOrigen((prev) => ({ ...prev, [name]: parseInt(value)}));
+    setOrigen((prev) => ({
+      ...prev,
+      [name]: value === "" ? value : parseInt(value),
+    }));
   };
 
   // Maneja los cambios en los inputs de las conexiones, actualizando su estado.
@@ -25,7 +28,7 @@ const AgregarTerritorio = ({ mostrar }) => {
     // Actualiza la conexión correspondiente con el valor nuevo.
     nuevasConexiones[index] = {
       ...nuevasConexiones[index],
-      [name]: parseInt(value),
+      [name]: value === "" ? value : parseInt(value),
     };
     setConexiones(nuevasConexiones);
   };
@@ -70,7 +73,7 @@ const AgregarTerritorio = ({ mostrar }) => {
     <div className="m-2 d-flex justify-content-center align-items-center row text-light">
       {/* Selección del tipo de territorio */}
       <select
-        className="mt-1 bg-transparent border border-dark form-select form-select-sm color2"
+        className="mt-1 bg-transparent border border-dark form-select form-select-sm color2 shadow-none"
         aria-label="Small select example"
         onChange={modificarSeleccionado}
       >
@@ -111,6 +114,7 @@ const AgregarTerritorio = ({ mostrar }) => {
                   name="x"
                   value={origen.x}
                   onChange={cambioDeOrigen}
+                  min="-Infinity"
                 />
               </div>
             </div>
@@ -130,6 +134,7 @@ const AgregarTerritorio = ({ mostrar }) => {
                   name="y"
                   value={origen.y}
                   onChange={cambioDeOrigen}
+                  min="-Infinity"
                 />
               </div>
             </div>
@@ -159,6 +164,7 @@ const AgregarTerritorio = ({ mostrar }) => {
                       name="x"
                       value={conexion.x}
                       onChange={(e) => modificarConexion(index, e)}
+                      min="-Infinity"
                     />
                   </div>
                 </div>
@@ -178,6 +184,7 @@ const AgregarTerritorio = ({ mostrar }) => {
                       name="y"
                       value={conexion.y}
                       onChange={(e) => modificarConexion(index, e)}
+                      min="-Infinity"
                     />
                   </div>
                 </div>

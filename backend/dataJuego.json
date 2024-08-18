@@ -1,0 +1,45 @@
+{
+  "mapa": {
+    "id": null,
+    "name": "me trajeron del back",
+    "img": "img Inkranate",
+    "dimensiones": {
+      "largo": "...px",
+      "ancho": "...px"
+    },
+    "territorios_terrestres": [
+      {
+        "id": 1,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 34,
+          "y": 34
+        },
+        "conexiones": [
+          {
+            "x": 23,
+            "y": 34,
+            "distancia": 11
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 0,
+          "y": 0
+        },
+        "conexiones": [
+          {
+            "x": 12,
+            "y": 12,
+            "distancia": 16.97
+          }
+        ]
+      }
+    ],
+    "territorios_acuaticos": [],
+    "territorios_costeros": []
+  }
+}

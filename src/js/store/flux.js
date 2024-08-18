@@ -73,6 +73,47 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 				console.log(store.datosDelJuego.mapa.territorios_terrestres)
 			},
+			guardarDatosEnBackend: async () => {
+				const store = getStore();
+				try {
+					const response = await fetch('http://localhost:3001/api/store', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify(store.datosDelJuego),
+					});
+					const result = await response.json();
+					console.log(result.message);
+				} catch (error) {
+					console.error('Error al guardar el store en el backend', error);
+				}
+			},
+			cargarDatosDesdeBackend: async () => {
+				const store = getStore();
+				console.log('antes del fetch cargarDatos')
+				try {
+					const response = await fetch('http://localhost:3001/api/store');
+					const data = await response.json();
+					if (response.status == 200) {
+						console.log(data)
+						setStore({
+							...store,
+							datosDelJuego: data
+					});
+					} else {
+						console.log(data)
+					}
+					//console.log('Datos del juego cargados desde el backend');
+				} catch (error) {
+					console.error('Error al cargar los datos del juego desde el backend', error);
+				}
+				console.log('despues del fetch cargarDatos')
+			},
+			imprimirDatosDelJuego: () => {
+				const store = getStore()
+				console.log(store.datosDelJuego)
+			},
 			moveCamera: (x, y) => { //En desuso
 				const store = getStore()
 				

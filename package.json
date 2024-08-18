@@ -27,9 +27,6 @@
 	],
 	"license": "ISC",
 	"devDependencies": {
-		"@react-three/drei": "^9.108.4",
-		"@react-three/fiber": "^8.16.8",
-		"three": "^0.166.1",
 		"@babel/cli": "^7.16.0",
 		"@babel/core": "^7.16.0",
 		"@babel/plugin-proposal-class-properties": "^7.16.0",
@@ -37,6 +34,8 @@
 		"@babel/preset-env": "^7.16.4",
 		"@babel/preset-react": "^7.16.0",
 		"@babel/runtime": "^7.16.3",
+		"@react-three/drei": "^9.108.4",
+		"@react-three/fiber": "^8.16.8",
 		"babel-eslint": "^10.1.0",
 		"babel-loader": "^8.2.3",
 		"babel-plugin-transform-class-properties": "^6.24.1",
@@ -56,6 +55,7 @@
 		"prettier": "^2.5.1",
 		"remote-origin-url": "^2.0.0",
 		"style-loader": "^3.3.1",
+		"three": "^0.166.1",
 		"webpack": "^5.65.0",
 		"webpack-cli": "^4.9.1",
 		"webpack-dev-server": "^4.6.0",
@@ -77,6 +77,9 @@
 		]
 	},
 	"dependencies": {
+		"cors": "^2.8.5",
+		"express": "^4.19.2",
+		"fs": "^0.0.1-security",
 		"prop-types": "^15.7.2",
 		"query-string": "^7.0.1",
 		"react": "^18.2.0",

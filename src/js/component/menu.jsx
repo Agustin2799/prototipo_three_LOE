@@ -3,9 +3,18 @@ import { Context } from "../store/appContext";
 import AgregarTerritorio from "./agregarTerritorio.jsx";
 
 const Menu = () => {
-  const { store } = useContext(Context);
+  const { store, actions } = useContext(Context);
   const [mostrarAgregarTerritorio, setMostrarAgregarTerritorio] =
     useState(false);
+  
+  //Guardamos los cambios localmente
+  const guardarCambios = () => {
+    actions.guardarDatosEnBackend();
+  }
+  const imprimirDatos = () => {
+    actions.imprimirDatosDelJuego();
+  }
+  
   return (
     <div>
       <div className="m-2 d-flex justify-content-center align-items-center row text-light">
@@ -28,6 +37,22 @@ const Menu = () => {
         <p className="col-12 m-0 color1">Agregar territorio:</p>
       </div>
       <AgregarTerritorio mostrar={mostrarAgregarTerritorio} />
+      <div>
+        <button
+          type="button"
+          className="btn btn-outline-secondary btn-sm add mt-3 p-0 d-flex justify-content-center align-items-center pb-1"
+          onClick={guardarCambios}
+        >
+          Gurardar cambios
+        </button>
+        <button
+          type="button"
+          className="btn btn-outline-secondary btn-sm add mt-3 p-0 d-flex justify-content-center align-items-center pb-1"
+          onClick={imprimirDatos}
+        >
+          Imprimir datos del juego
+        </button>
+      </div>
     </div>
   );
 };
