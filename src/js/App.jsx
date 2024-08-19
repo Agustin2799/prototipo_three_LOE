@@ -7,6 +7,7 @@ import Ejes from "./component/ejes.jsx";
 import { Context } from "./store/appContext.js";
 import Menu from "./component/menu.jsx";
 import DibujaPunto from "./component/dibujaPunto.jsx";
+import DibujarConexiones from "./component/dibujaLineas.jsx";
 
 /* Sobre Raycaster
 
@@ -149,10 +150,7 @@ function App() {
   //Referencia al canvas para los eventos
   const canvasContainer = useRef();
 
-  //Vigilamos e imprimimos en la consola cualquier cambio en el store
-  useEffect(() => {
-    console.log(store)
-  },[store])
+  
 
   /* Sobre el este useEffect 
 
@@ -210,6 +208,8 @@ function App() {
           <Ejes />
           {/* Dibuja las ubicaciones en el mapa */}
           <DibujaPunto territorios={store.datosDelJuego.mapa.territorios_terrestres} />
+          {/* Dibuja las conecciones de los puntos */}
+          <DibujarConexiones territorios={store.datosDelJuego.mapa.territorios_terrestres} />
           {/* Configuración de la cámara con posición, campo de visión y rotación */}
           <PerspectiveCamera
             ref={cameraRef}

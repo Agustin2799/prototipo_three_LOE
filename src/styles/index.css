@@ -10,13 +10,13 @@
 
 #menu {
     height: 100vh;
-    width: 25vw;
+    width: 30vw;
      overflow-y: auto;
 }
 
 #canvasContainer {
     height: 100vh;
-    width: 75vw;
+    width: 70vw;
 }
 #menu{
     background-color: #031633 !important;
@@ -41,7 +41,7 @@ input[type="checkbox"]{
   box-shadow: none !important;
 }
 button {
-    height: 20px !important;
+    height: 30px !important;
 }
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
@@ -54,4 +54,10 @@ input[type="number"]::-webkit-outer-spin-button {
 .add:hover {
      background-color: #02724d !important;
      border: #02724d;
+}
+.btnMenu {
+ width: 200px;
+}
+#btn-ancho-especifico {
+  width: 323px !important;
 }

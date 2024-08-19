@@ -11,6 +11,7 @@ const Menu = () => {
   const guardarCambios = () => {
     actions.guardarDatosEnBackend();
   }
+  //Imprime los datos del juego en la consola.
   const imprimirDatos = () => {
     actions.imprimirDatosDelJuego();
   }
@@ -37,17 +38,17 @@ const Menu = () => {
         <p className="col-12 m-0 color1">Agregar territorio:</p>
       </div>
       <AgregarTerritorio mostrar={mostrarAgregarTerritorio} />
-      <div>
+      <div className="col-12 d-flex flex-column align-items-center justify-content-center">
         <button
           type="button"
-          className="btn btn-outline-secondary btn-sm add mt-3 p-0 d-flex justify-content-center align-items-center pb-1"
+          className="btn btnMenu btn-outline-secondary btn-sm add mt-3 p-0 text-center pb-1"
           onClick={guardarCambios}
         >
-          Gurardar cambios
+          Guardar cambios
         </button>
         <button
           type="button"
-          className="btn btn-outline-secondary btn-sm add mt-3 p-0 d-flex justify-content-center align-items-center pb-1"
+          className="btn btnMenu btn-outline-secondary btn-sm add mt-3 p-0 text-center pb-1"
           onClick={imprimirDatos}
         >
           Imprimir datos del juego

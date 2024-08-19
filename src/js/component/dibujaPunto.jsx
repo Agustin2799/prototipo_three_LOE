@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { SphereGeometry, MeshBasicMaterial, Mesh, Group } from "three";
+import { SphereGeometry, MeshBasicMaterial, Mesh} from "three";
 
 const DibujaPunto = ({ territorios }) => {
   const groupRef = useRef();
@@ -8,18 +8,14 @@ const DibujaPunto = ({ territorios }) => {
     const coordenadas = territorios.map((terr) => terr.coordenadas);
     const group = groupRef.current;
 
-    // Limpiar cualquier punto previo
-    while (group.children.length > 0) {
-      group.remove(group.children[0]);
-    }
 
     // Crear un punto para cada coordenada
     coordenadas.forEach(({ x, y }) => {
       const geometry = new SphereGeometry(1, 16, 16); // Tamaño del punto aumentado
       const material = new MeshBasicMaterial({
-        color: "white",
+        color: "blue",
         transparent: true,
-        opacity: 0.5, // Ajustar la transparencia
+        opacity: 0.4, // Ajustar la transparencia
       });
       const sphere = new Mesh(geometry, material);
 

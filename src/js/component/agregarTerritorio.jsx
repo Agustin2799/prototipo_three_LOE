@@ -51,17 +51,19 @@ const AgregarTerritorio = ({ mostrar }) => {
     setTipoTerritorio(event.target.value);
   };
 
+  /* Agrega un territorio, y para cada una de sus conexiones, si el punto no existe, lo crea conectado con el nuevo territiorio, y si el territorio con las coordenadas de alguna coneccion existe, modifica sus conexiones para agregarle la nueva con el territorio creado. */
   const agregarTerritorio = () => {
-    // console.log(tipoTerritorio)
-    // console.log(origen)
-    // console.log(conexiones);
-    if (tipoTerritorio === 'terrestre') {
-      console.log('en el if terrestre')
-      actions.agregarTerritorioTerrestre(origen, conexiones)
+    if (tipoTerritorio === "terrestre") {
+      console.log("en el if terrestre");
+      actions.agregarTerritorioTerrestre(origen, conexiones);
     }
-
-  }
-
+  };
+  //Elimina el último territorio agregado y las conexiones con el de los demás territorios
+  const eliminarUltimoTerritorio = () => {
+    if (tipoTerritorio) {
+      actions.eliminarUltimoTerritorio(tipoTerritorio);
+    }
+  };
 
   // Si mostrar es falso, no renderiza nada.
   if (!mostrar) {
@@ -91,8 +93,8 @@ const AgregarTerritorio = ({ mostrar }) => {
         </option>
       </select>
 
-      <div>
-        <p className="mt-2 mb-1 color2">Conexiones</p>
+      <div className="container-fluid">
+        <p className="mt-2 mb-1 color2 w-100 p-0 ms-1">Conexiones</p>
         <p className="color2 mb-1 text-center">Origen</p>
 
         {/* Input para las coordenadas del origen */}
@@ -192,9 +194,9 @@ const AgregarTerritorio = ({ mostrar }) => {
             </div>
 
             {/* Botón para eliminar la conexión */}
-            <div className="col-12 d-flex justify-content-center">
+            <div className="col-12  d-flex justify-content-center w-row">
               <button
-                className="btn w-75 btn-outline-secondary delete btn-sm mt-1 mb-1 p-0 d-flex justify-content-center align-items-center pb-1"
+                className="btn col-12 btn-ancho-especifico btn-outline-secondary btn-sm add mt-3 p-0 d-flex justify-content-center align-items-center pb-1"
                 onClick={() => eliminarConexion(index)}
               >
                 Eliminar
@@ -205,9 +207,9 @@ const AgregarTerritorio = ({ mostrar }) => {
 
         {/* Botón para agregar una nueva conexión si hay menos de 5 */}
         {conexiones.length < 5 && (
-          <div className="col-12 d-flex justify-content-center">
+          <div className="col-12 d-flex justify-content-center row">
             <button
-              className="btn w-75 btn-outline-secondary btn-sm add mt-1 p-0 d-flex justify-content-center align-items-center pb-1"
+              className="btn ms-4 col-12 btn-outline-secondary btn-sm add mt-3 p-0 d-flex justify-content-center align-items-center pb-1"
               onClick={agregarConexion}
             >
               Agregar Conexión
@@ -227,8 +229,9 @@ const AgregarTerritorio = ({ mostrar }) => {
       <button
         type="button"
         className="btn btn-outline-secondary delete btn-sm mt-2 p-0 d-flex justify-content-center align-items-center pb-1"
+        onClick={eliminarUltimoTerritorio}
       >
-        Eliminar último agregado
+        Eliminar último agregado - {tipoTerritorio}
       </button>
     </div>
   );
