@@ -3,6 +3,11 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			banderas: {
+				agregarTerritorio: false,
+				mostrarPuntos: false,
+				mostrarConexiones: false
+			},
 			posicionCamara: {
 				x: 0,
 				y: 0,
@@ -27,7 +32,43 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			}
 		},
-		actions: {// Actualiza las coordenadas clickeadas en el estado global
+		actions: {
+			changeBanderas: (bandera) => {
+				const store = getStore();
+				const { banderas } = store;
+
+				console.log(bandera)
+				switch (bandera) {
+					case 'agregar territorios':
+						setStore({
+							banderas: {
+								...banderas,
+								agregarTerritorio: !banderas.agregarTerritorio
+							}
+						});
+						break;
+					case 'mostrar puntos':
+						setStore({
+							banderas: {
+								...banderas,
+								mostrarPuntos: !banderas.mostrarPuntos
+							}
+						});
+						break;
+					case 'mostrar conexiones':
+						setStore({
+							banderas: {
+								...banderas,
+								mostrarConexiones: !banderas.mostrarConexiones
+							}
+						});
+						break;
+					default:
+						console.log('Bandera no reconocida');
+						break;
+				}
+			},
+			// Actualiza las coordenadas clickeadas en el estado global
 			changeCoordsClickeadas: (x, y) => {
 				const store = getStore(); // Obtiene el estado global actual
 

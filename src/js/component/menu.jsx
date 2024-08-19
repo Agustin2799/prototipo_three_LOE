@@ -4,9 +4,19 @@ import AgregarTerritorio from "./agregarTerritorio.jsx";
 
 const Menu = () => {
   const { store, actions } = useContext(Context);
-  const [mostrarAgregarTerritorio, setMostrarAgregarTerritorio] =
-    useState(false);
   
+  //cambiamos la bandera del store para mostrar agregar territorio
+  const showTerritorios = () => {
+    actions.changeBanderas('agregar territorios')
+  }
+  //cambiamos la bander del store para mostrar los puntos
+ const showPuntos = () => {
+   actions.changeBanderas("mostrar puntos");
+ };
+  //cambiamos la bandera del store para mostrar las conexiones
+   const showConexiones = () => {
+     actions.changeBanderas("mostrar conexiones");
+   };
   //Guardamos los cambios localmente
   const guardarCambios = () => {
     actions.guardarDatosEnBackend();
@@ -31,13 +41,31 @@ const Menu = () => {
           type="checkbox"
           role="switch"
           id="flexSwitchCheckDefault"
-          onChange={() => {
-            setMostrarAgregarTerritorio(!mostrarAgregarTerritorio);
-          }}
+          onChange={showTerritorios}
         />
         <p className="col-12 m-0 color1">Agregar territorio:</p>
       </div>
-      <AgregarTerritorio mostrar={mostrarAgregarTerritorio} />
+      <AgregarTerritorio mostrar={store.banderas.agregarTerritorio} />
+      <div className="form-check form-switch ms-2">
+        <input
+          className="form-check-input"
+          type="checkbox"
+          role="switch"
+          id="flexSwitchCheckDefault"
+          onChange={showPuntos}
+        />
+        <p className="col-12 m-0 color1">Mostrar puntos</p>
+      </div>
+      <div className="form-check form-switch ms-2">
+        <input
+          className="form-check-input"
+          type="checkbox"
+          role="switch"
+          id="flexSwitchCheckDefault"
+          onChange={showConexiones}
+        />
+        <p className="col-12 m-0 color1">Mostrar conexiones</p>
+      </div>
       <div className="col-12 d-flex flex-column align-items-center justify-content-center">
         <button
           type="button"

@@ -1,17 +1,18 @@
 import React, { useRef, useEffect } from "react";
-import { SphereGeometry, MeshBasicMaterial, Mesh} from "three";
+import { SphereGeometry, MeshBasicMaterial, Mesh } from "three";
 
-const DibujaPunto = ({ territorios }) => {
+const DibujaPunto = ({ territorios, mostrar }) => {
   const groupRef = useRef();
 
   useEffect(() => {
+    if (!mostrar) return; // Si mostrar es false, no hacer nada
+
     const coordenadas = territorios.map((terr) => terr.coordenadas);
     const group = groupRef.current;
 
-
     // Crear un punto para cada coordenada
     coordenadas.forEach(({ x, y }) => {
-      const geometry = new SphereGeometry(1, 16, 16); // Tamaño del punto aumentado
+      const geometry = new SphereGeometry(0.5, 16, 16); // Tamaño del punto aumentado
       const material = new MeshBasicMaterial({
         color: "blue",
         transparent: true,
@@ -27,9 +28,9 @@ const DibujaPunto = ({ territorios }) => {
       // Limpiar geometrías y materiales cuando se desmonte el componente
       group.clear();
     };
-  }, [territorios]);
+  }, [territorios, mostrar]);
 
-  return <group ref={groupRef} />;
+  return mostrar ? <group ref={groupRef} /> : null; // Renderizar el grupo solo si mostrar es true
 };
 
 export default DibujaPunto;

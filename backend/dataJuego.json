@@ -20,6 +20,16 @@
             "x": 12,
             "y": 10,
             "distancia": 11.31
+          },
+          {
+            "x": 30,
+            "y": 2,
+            "distancia": 10
+          },
+          {
+            "x": 20,
+            "y": -16,
+            "distancia": 18
           }
         ]
       },
@@ -40,6 +50,11 @@
             "x": -12,
             "y": 21,
             "distancia": 26.4
+          },
+          {
+            "x": 27,
+            "y": 12,
+            "distancia": 15.13
           }
         ]
       },
@@ -85,6 +100,11 @@
             "x": -3,
             "y": 36,
             "distancia": 10.05
+          },
+          {
+            "x": 13,
+            "y": 24,
+            "distancia": 17.12
           }
         ]
       },
@@ -130,6 +150,11 @@
             "x": -37,
             "y": 48,
             "distancia": 14.14
+          },
+          {
+            "x": -46,
+            "y": 19,
+            "distancia": 16.55
           }
         ]
       },
@@ -145,6 +170,16 @@
             "x": -27,
             "y": 24,
             "distancia": 14.76
+          },
+          {
+            "x": -47,
+            "y": 8,
+            "distancia": 13.34
+          },
+          {
+            "x": -29,
+            "y": 2,
+            "distancia": 10.3
           }
         ]
       },
@@ -165,6 +200,11 @@
             "x": -24,
             "y": 54,
             "distancia": 14.32
+          },
+          {
+            "x": -43,
+            "y": 56,
+            "distancia": 10
           }
         ]
       },
@@ -185,6 +225,16 @@
             "x": -11,
             "y": 47,
             "distancia": 14.76
+          },
+          {
+            "x": 7,
+            "y": 55,
+            "distancia": 31.02
+          },
+          {
+            "x": -43,
+            "y": 56,
+            "distancia": 19.1
           }
         ]
       },
@@ -205,6 +255,11 @@
             "x": -3,
             "y": 36,
             "distancia": 13.6
+          },
+          {
+            "x": 7,
+            "y": 55,
+            "distancia": 19.7
           }
         ]
       },
@@ -225,6 +280,1281 @@
             "x": -4,
             "y": 26,
             "distancia": 10.05
+          },
+          {
+            "x": 10,
+            "y": 36,
+            "distancia": 13
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 27,
+          "y": 12
+        },
+        "conexiones": [
+          {
+            "x": 12,
+            "y": 10,
+            "distancia": 15.13
+          },
+          {
+            "x": 36,
+            "y": 7,
+            "distancia": 10.3
+          },
+          {
+            "x": 13,
+            "y": 24,
+            "distancia": 18.44
+          },
+          {
+            "x": 41,
+            "y": 14,
+            "distancia": 14.14
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 36,
+          "y": 7
+        },
+        "conexiones": [
+          {
+            "x": 27,
+            "y": 12,
+            "distancia": 10.3
+          },
+          {
+            "x": 30,
+            "y": 2,
+            "distancia": 7.81
+          },
+          {
+            "x": 41,
+            "y": 14,
+            "distancia": 8.6
+          }
+        ]
+      },
+      {
+        "id": 14,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 30,
+          "y": 2
+        },
+        "conexiones": [
+          {
+            "x": 20,
+            "y": 2,
+            "distancia": 10
+          },
+          {
+            "x": 36,
+            "y": 7,
+            "distancia": 7.81
+          },
+          {
+            "x": 48,
+            "y": -9,
+            "distancia": 21.1
+          },
+          {
+            "x": 53,
+            "y": 0,
+            "distancia": 23.09
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 48,
+          "y": -9
+        },
+        "conexiones": [
+          {
+            "x": 30,
+            "y": 2,
+            "distancia": 21.1
+          },
+          {
+            "x": 34,
+            "y": -18,
+            "distancia": 16.64
+          },
+          {
+            "x": 53,
+            "y": 0,
+            "distancia": 10.3
+          }
+        ]
+      },
+      {
+        "id": 16,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 20,
+          "y": -16
+        },
+        "conexiones": [
+          {
+            "x": 20,
+            "y": 2,
+            "distancia": 18
+          },
+          {
+            "x": 34,
+            "y": -18,
+            "distancia": 14.14
+          },
+          {
+            "x": 26,
+            "y": -35,
+            "distancia": 19.92
+          }
+        ]
+      },
+      {
+        "id": 17,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 34,
+          "y": -18
+        },
+        "conexiones": [
+          {
+            "x": 20,
+            "y": -16,
+            "distancia": 14.14
+          },
+          {
+            "x": 48,
+            "y": -9,
+            "distancia": 16.64
+          },
+          {
+            "x": 26,
+            "y": -35,
+            "distancia": 18.79
+          }
+        ]
+      },
+      {
+        "id": 18,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 26,
+          "y": -35
+        },
+        "conexiones": [
+          {
+            "x": 20,
+            "y": -16,
+            "distancia": 19.92
+          },
+          {
+            "x": 34,
+            "y": -18,
+            "distancia": 18.79
+          },
+          {
+            "x": 7,
+            "y": -55,
+            "distancia": 27.59
+          }
+        ]
+      },
+      {
+        "id": 19,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 7,
+          "y": -55
+        },
+        "conexiones": [
+          {
+            "x": 26,
+            "y": -35,
+            "distancia": 27.59
+          },
+          {
+            "x": -4,
+            "y": -40,
+            "distancia": 18.6
+          }
+        ]
+      },
+      {
+        "id": 20,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 7,
+          "y": 55
+        },
+        "conexiones": [
+          {
+            "x": -24,
+            "y": 54,
+            "distancia": 31.02
+          },
+          {
+            "x": -11,
+            "y": 47,
+            "distancia": 19.7
+          },
+          {
+            "x": 10,
+            "y": 36,
+            "distancia": 19.24
+          }
+        ]
+      },
+      {
+        "id": 21,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 10,
+          "y": 36
+        },
+        "conexiones": [
+          {
+            "x": 7,
+            "y": 55,
+            "distancia": 19.24
+          },
+          {
+            "x": -3,
+            "y": 36,
+            "distancia": 13
+          },
+          {
+            "x": 13,
+            "y": 24,
+            "distancia": 12.37
+          }
+        ]
+      },
+      {
+        "id": 22,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 13,
+          "y": 24
+        },
+        "conexiones": [
+          {
+            "x": 10,
+            "y": 36,
+            "distancia": 12.37
+          },
+          {
+            "x": -4,
+            "y": 26,
+            "distancia": 17.12
+          },
+          {
+            "x": 27,
+            "y": 12,
+            "distancia": 18.44
+          }
+        ]
+      },
+      {
+        "id": 23,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -43,
+          "y": 56
+        },
+        "conexiones": [
+          {
+            "x": -37,
+            "y": 48,
+            "distancia": 10
+          },
+          {
+            "x": -24,
+            "y": 54,
+            "distancia": 19.1
+          }
+        ]
+      },
+      {
+        "id": 24,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 41,
+          "y": 14
+        },
+        "conexiones": [
+          {
+            "x": 36,
+            "y": 7,
+            "distancia": 8.6
+          },
+          {
+            "x": 27,
+            "y": 12,
+            "distancia": 14.14
+          },
+          {
+            "x": 50,
+            "y": 18,
+            "distancia": 9.85
+          }
+        ]
+      },
+      {
+        "id": 25,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 50,
+          "y": 18
+        },
+        "conexiones": [
+          {
+            "x": 41,
+            "y": 14,
+            "distancia": 9.85
+          },
+          {
+            "x": 56,
+            "y": 16,
+            "distancia": 6.32
+          }
+        ]
+      },
+      {
+        "id": 26,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 56,
+          "y": 16
+        },
+        "conexiones": [
+          {
+            "x": 60,
+            "y": 12,
+            "distancia": 5.66
+          },
+          {
+            "x": 50,
+            "y": 18,
+            "distancia": 6.32
+          },
+          {
+            "x": 60,
+            "y": 18,
+            "distancia": 4.47
+          }
+        ]
+      },
+      {
+        "id": 27,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 60,
+          "y": 12
+        },
+        "conexiones": [
+          {
+            "x": 56,
+            "y": 16,
+            "distancia": 5.66
+          }
+        ]
+      },
+      {
+        "id": 28,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 60,
+          "y": 18
+        },
+        "conexiones": [
+          {
+            "x": 56,
+            "y": 16,
+            "distancia": 4.47
+          },
+          {
+            "x": 55,
+            "y": 22,
+            "distancia": 6.4
+          }
+        ]
+      },
+      {
+        "id": 29,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 55,
+          "y": 22
+        },
+        "conexiones": [
+          {
+            "x": 60,
+            "y": 18,
+            "distancia": 6.4
+          },
+          {
+            "x": 66,
+            "y": 24,
+            "distancia": 11.18
+          }
+        ]
+      },
+      {
+        "id": 30,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 66,
+          "y": 24
+        },
+        "conexiones": [
+          {
+            "x": 55,
+            "y": 22,
+            "distancia": 11.18
+          },
+          {
+            "x": 63,
+            "y": 32,
+            "distancia": 8.54
+          }
+        ]
+      },
+      {
+        "id": 31,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 63,
+          "y": 32
+        },
+        "conexiones": [
+          {
+            "x": 66,
+            "y": 24,
+            "distancia": 8.54
+          },
+          {
+            "x": 79,
+            "y": 30,
+            "distancia": 16.12
+          },
+          {
+            "x": 74,
+            "y": 40,
+            "distancia": 13.6
+          }
+        ]
+      },
+      {
+        "id": 32,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 79,
+          "y": 30
+        },
+        "conexiones": [
+          {
+            "x": 63,
+            "y": 32,
+            "distancia": 16.12
+          },
+          {
+            "x": 74,
+            "y": 40,
+            "distancia": 11.18
+          }
+        ]
+      },
+      {
+        "id": 33,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 74,
+          "y": 40
+        },
+        "conexiones": [
+          {
+            "x": 76,
+            "y": 56,
+            "distancia": 16.12
+          },
+          {
+            "x": 63,
+            "y": 32,
+            "distancia": 13.6
+          },
+          {
+            "x": 79,
+            "y": 30,
+            "distancia": 11.18
+          }
+        ]
+      },
+      {
+        "id": 34,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 76,
+          "y": 56
+        },
+        "conexiones": [
+          {
+            "x": 74,
+            "y": 40,
+            "distancia": 16.12
+          },
+          {
+            "x": 67,
+            "y": 53,
+            "distancia": 9.49
+          }
+        ]
+      },
+      {
+        "id": 35,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 67,
+          "y": 53
+        },
+        "conexiones": [
+          {
+            "x": 76,
+            "y": 56,
+            "distancia": 9.49
+          }
+        ]
+      },
+      {
+        "id": 36,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -46,
+          "y": 19
+        },
+        "conexiones": [
+          {
+            "x": -39,
+            "y": 34,
+            "distancia": 16.55
+          },
+          {
+            "x": -60,
+            "y": 15,
+            "distancia": 14.56
+          }
+        ]
+      },
+      {
+        "id": 37,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -60,
+          "y": 15
+        },
+        "conexiones": [
+          {
+            "x": -46,
+            "y": 19,
+            "distancia": 14.56
+          },
+          {
+            "x": -59,
+            "y": 9,
+            "distancia": 6.08
+          }
+        ]
+      },
+      {
+        "id": 38,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -59,
+          "y": 9
+        },
+        "conexiones": [
+          {
+            "x": -60,
+            "y": 15,
+            "distancia": 6.08
+          },
+          {
+            "x": -47,
+            "y": 8,
+            "distancia": 12.04
+          },
+          {
+            "x": -66,
+            "y": 6,
+            "distancia": 7.62
+          },
+          {
+            "x": -58,
+            "y": 2,
+            "distancia": 7.07
+          }
+        ]
+      },
+      {
+        "id": 39,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -47,
+          "y": 8
+        },
+        "conexiones": [
+          {
+            "x": -59,
+            "y": 9,
+            "distancia": 12.04
+          },
+          {
+            "x": -34,
+            "y": 11,
+            "distancia": 13.34
+          },
+          {
+            "x": -44,
+            "y": 2,
+            "distancia": 6.71
+          },
+          {
+            "x": -58,
+            "y": 2,
+            "distancia": 12.53
+          }
+        ]
+      },
+      {
+        "id": 40,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -44,
+          "y": 2
+        },
+        "conexiones": [
+          {
+            "x": -47,
+            "y": 8,
+            "distancia": 6.71
+          },
+          {
+            "x": -39,
+            "y": -7,
+            "distancia": 10.3
+          },
+          {
+            "x": -29,
+            "y": 2,
+            "distancia": 15
+          }
+        ]
+      },
+      {
+        "id": 41,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -39,
+          "y": -7
+        },
+        "conexiones": [
+          {
+            "x": -44,
+            "y": 2,
+            "distancia": 10.3
+          },
+          {
+            "x": -18,
+            "y": -9,
+            "distancia": 21.1
+          },
+          {
+            "x": -45,
+            "y": -23,
+            "distancia": 17.09
+          }
+        ]
+      },
+      {
+        "id": 42,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -29,
+          "y": 2
+        },
+        "conexiones": [
+          {
+            "x": -44,
+            "y": 2,
+            "distancia": 15
+          },
+          {
+            "x": -34,
+            "y": 11,
+            "distancia": 10.3
+          },
+          {
+            "x": -18,
+            "y": -9,
+            "distancia": 15.56
+          }
+        ]
+      },
+      {
+        "id": 43,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -18,
+          "y": -9
+        },
+        "conexiones": [
+          {
+            "x": -29,
+            "y": 2,
+            "distancia": 15.56
+          },
+          {
+            "x": -39,
+            "y": -7,
+            "distancia": 21.1
+          },
+          {
+            "x": -9,
+            "y": -22,
+            "distancia": 15.81
+          }
+        ]
+      },
+      {
+        "id": 44,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -9,
+          "y": -22
+        },
+        "conexiones": [
+          {
+            "x": -18,
+            "y": -9,
+            "distancia": 15.81
+          },
+          {
+            "x": -4,
+            "y": -40,
+            "distancia": 18.68
+          }
+        ]
+      },
+      {
+        "id": 45,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -4,
+          "y": -40
+        },
+        "conexiones": [
+          {
+            "x": -9,
+            "y": -22,
+            "distancia": 18.68
+          },
+          {
+            "x": 7,
+            "y": -55,
+            "distancia": 18.6
+          }
+        ]
+      },
+      {
+        "id": 46,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 53,
+          "y": 0
+        },
+        "conexiones": [
+          {
+            "x": 48,
+            "y": -9,
+            "distancia": 10.3
+          },
+          {
+            "x": 30,
+            "y": 2,
+            "distancia": 23.09
+          },
+          {
+            "x": 56,
+            "y": 6,
+            "distancia": 6.71
+          },
+          {
+            "x": 68,
+            "y": 0,
+            "distancia": 15
+          }
+        ]
+      },
+      {
+        "id": 47,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 56,
+          "y": 6
+        },
+        "conexiones": [
+          {
+            "x": 53,
+            "y": 0,
+            "distancia": 6.71
+          }
+        ]
+      },
+      {
+        "id": 48,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 68,
+          "y": 0
+        },
+        "conexiones": [
+          {
+            "x": 53,
+            "y": 0,
+            "distancia": 15
+          },
+          {
+            "x": 72,
+            "y": 4,
+            "distancia": 5.66
+          }
+        ]
+      },
+      {
+        "id": 49,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 72,
+          "y": 4
+        },
+        "conexiones": [
+          {
+            "x": 68,
+            "y": 0,
+            "distancia": 5.66
+          },
+          {
+            "x": 68,
+            "y": 8,
+            "distancia": 5.66
+          },
+          {
+            "x": 78,
+            "y": 4,
+            "distancia": 6
+          }
+        ]
+      },
+      {
+        "id": 50,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 68,
+          "y": 8
+        },
+        "conexiones": [
+          {
+            "x": 72,
+            "y": 4,
+            "distancia": 5.66
+          }
+        ]
+      },
+      {
+        "id": 51,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": 78,
+          "y": 4
+        },
+        "conexiones": [
+          {
+            "x": 72,
+            "y": 4,
+            "distancia": 6
+          }
+        ]
+      },
+      {
+        "id": 52,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -45,
+          "y": -23
+        },
+        "conexiones": [
+          {
+            "x": -39,
+            "y": -7,
+            "distancia": 17.09
+          },
+          {
+            "x": -40,
+            "y": -36,
+            "distancia": 13.93
+          },
+          {
+            "x": -61,
+            "y": -33,
+            "distancia": 18.87
+          },
+          {
+            "x": -64,
+            "y": -18,
+            "distancia": 19.65
+          }
+        ]
+      },
+      {
+        "id": 53,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -40,
+          "y": -36
+        },
+        "conexiones": [
+          {
+            "x": -45,
+            "y": -23,
+            "distancia": 13.93
+          },
+          {
+            "x": -54,
+            "y": -41,
+            "distancia": 14.87
+          }
+        ]
+      },
+      {
+        "id": 54,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -54,
+          "y": -41
+        },
+        "conexiones": [
+          {
+            "x": -40,
+            "y": -36,
+            "distancia": 14.87
+          },
+          {
+            "x": -57,
+            "y": -49,
+            "distancia": 8.54
+          }
+        ]
+      },
+      {
+        "id": 55,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -57,
+          "y": -49
+        },
+        "conexiones": [
+          {
+            "x": -54,
+            "y": -41,
+            "distancia": 8.54
+          },
+          {
+            "x": -67,
+            "y": -58,
+            "distancia": 13.45
+          },
+          {
+            "x": -58,
+            "y": -58,
+            "distancia": 9.06
+          }
+        ]
+      },
+      {
+        "id": 56,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -67,
+          "y": -58
+        },
+        "conexiones": [
+          {
+            "x": -57,
+            "y": -49,
+            "distancia": 13.45
+          },
+          {
+            "x": -58,
+            "y": -58,
+            "distancia": 9
+          }
+        ]
+      },
+      {
+        "id": 57,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -58,
+          "y": -58
+        },
+        "conexiones": [
+          {
+            "x": -57,
+            "y": -49,
+            "distancia": 9.06
+          },
+          {
+            "x": -67,
+            "y": -58,
+            "distancia": 9
+          }
+        ]
+      },
+      {
+        "id": 58,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -61,
+          "y": -33
+        },
+        "conexiones": [
+          {
+            "x": -45,
+            "y": -23,
+            "distancia": 18.87
+          },
+          {
+            "x": -71,
+            "y": -34,
+            "distancia": 10.05
+          },
+          {
+            "x": -69,
+            "y": -29,
+            "distancia": 8.94
+          }
+        ]
+      },
+      {
+        "id": 59,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -71,
+          "y": -34
+        },
+        "conexiones": [
+          {
+            "x": -61,
+            "y": -33,
+            "distancia": 10.05
+          },
+          {
+            "x": -78,
+            "y": -32,
+            "distancia": 7.28
+          }
+        ]
+      },
+      {
+        "id": 60,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -69,
+          "y": -29
+        },
+        "conexiones": [
+          {
+            "x": -61,
+            "y": -33,
+            "distancia": 8.94
+          },
+          {
+            "x": -78,
+            "y": -32,
+            "distancia": 9.49
+          }
+        ]
+      },
+      {
+        "id": 61,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -78,
+          "y": -32
+        },
+        "conexiones": [
+          {
+            "x": -69,
+            "y": -29,
+            "distancia": 9.49
+          },
+          {
+            "x": -71,
+            "y": -34,
+            "distancia": 7.28
+          }
+        ]
+      },
+      {
+        "id": 62,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -64,
+          "y": -18
+        },
+        "conexiones": [
+          {
+            "x": -45,
+            "y": -23,
+            "distancia": 19.65
+          },
+          {
+            "x": -62,
+            "y": -7,
+            "distancia": 11.18
+          },
+          {
+            "x": -78,
+            "y": -8,
+            "distancia": 17.2
+          }
+        ]
+      },
+      {
+        "id": 63,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -62,
+          "y": -7
+        },
+        "conexiones": [
+          {
+            "x": -64,
+            "y": -18,
+            "distancia": 11.18
+          },
+          {
+            "x": -70,
+            "y": -1,
+            "distancia": 10
+          }
+        ]
+      },
+      {
+        "id": 64,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -78,
+          "y": -8
+        },
+        "conexiones": [
+          {
+            "x": -64,
+            "y": -18,
+            "distancia": 17.2
+          },
+          {
+            "x": -70,
+            "y": -1,
+            "distancia": 10.63
+          }
+        ]
+      },
+      {
+        "id": 65,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -70,
+          "y": -1
+        },
+        "conexiones": [
+          {
+            "x": -78,
+            "y": -8,
+            "distancia": 10.63
+          },
+          {
+            "x": -62,
+            "y": -7,
+            "distancia": 10
+          },
+          {
+            "x": -66,
+            "y": 6,
+            "distancia": 8.06
+          },
+          {
+            "x": -58,
+            "y": 2,
+            "distancia": 12.37
+          }
+        ]
+      },
+      {
+        "id": 66,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -66,
+          "y": 6
+        },
+        "conexiones": [
+          {
+            "x": -70,
+            "y": -1,
+            "distancia": 8.06
+          },
+          {
+            "x": -59,
+            "y": 9,
+            "distancia": 7.62
+          }
+        ]
+      },
+      {
+        "id": 67,
+        "tipo": "terrestre",
+        "coordenadas": {
+          "x": -58,
+          "y": 2
+        },
+        "conexiones": [
+          {
+            "x": -70,
+            "y": -1,
+            "distancia": 12.37
+          },
+          {
+            "x": -59,
+            "y": 9,
+            "distancia": 7.07
+          },
+          {
+            "x": -47,
+            "y": 8,
+            "distancia": 12.53
           }
         ]
       }

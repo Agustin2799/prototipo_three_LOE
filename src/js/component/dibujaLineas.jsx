@@ -3,45 +3,28 @@ import { Line2 } from "three/examples/jsm/lines/Line2";
 import { LineMaterial } from "three/examples/jsm/lines/LineMaterial";
 import { LineGeometry } from "three/examples/jsm/lines/LineGeometry";
 
-// Componente que dibuja líneas entre un territorio y sus conexiones.
-const DibujarConexiones = ({ territorios }) => {
-  // Crear una referencia para el grupo de conexiones.
+const DibujarConexiones = ({ territorios, mostrar }) => {
   const grupoRef = useRef();
-  // Estado para rastrear conexiones ya dibujadas.
   const [conexionesDibujadas, setConexionesDibujadas] = useState([]);
-  // Lista de líneas creadas
-  const [lineasCreadas, setLineasCreadas] = useState([]);
 
   useEffect(() => {
-    // Guardar las conexiones actuales para comparación.
-    const conexionesActuales = new Set();
-
-    territorios.forEach((territorio) => {
-      territorio.conexiones.forEach((conexion) => {
-        const claveConexion = `${territorio.coordenadas.x},${territorio.coordenadas.y}-${conexion.x},${conexion.y}`;
-        conexionesActuales.add(claveConexion);
-      });
-    });
-
-    // Obtener las líneas en el grupo y convertirlas en un array para manipulación
-    const lineasEnElGrupo = grupoRef.current
-      ? Array.from(grupoRef.current.children)
-      : [];
-
-    // Eliminar las líneas más recientes si el nuevo objeto es más corto
-    if (lineasEnElGrupo.length > conexionesActuales.size) {
-      const lineasPorEliminar = lineasEnElGrupo.slice(
-        -lineasEnElGrupo.length + conexionesActuales.size
-      );
-      lineasPorEliminar.forEach((linea) => grupoRef.current.remove(linea));
+    // Limpiar el grupo si mostrar es false
+    if (!mostrar) {
+      if (grupoRef.current) {
+        while (grupoRef.current.children.length) {
+          grupoRef.current.remove(grupoRef.current.children[0]);
+        }
+      }
+      setConexionesDibujadas([]); // Reiniciar conexiones dibujadas
+      return; // Salir del efecto
     }
 
-    // Dibujar nuevas líneas
     const nuevasConexiones = [];
 
     territorios.forEach((territorio) => {
       territorio.conexiones.forEach((conexion) => {
         const claveConexion = `${territorio.coordenadas.x},${territorio.coordenadas.y}-${conexion.x},${conexion.y}`;
+        // Solo dibujar si la conexión no ha sido dibujada antes
         if (!conexionesDibujadas.includes(claveConexion)) {
           nuevasConexiones.push(claveConexion);
 
@@ -58,22 +41,20 @@ const DibujarConexiones = ({ territorios }) => {
           const material = new LineMaterial({
             color: "#979076",
             linewidth: 4,
-            dashed: false,
             transparent: true,
-            opacity: 0.2, // Ajustar la transparencia
+            opacity: 0.3,
           });
 
           const linea = new Line2(geometria, material);
           grupoRef.current.add(linea);
-          setLineasCreadas((prev) => [...prev, linea]); // Agregar la línea a la lista de líneas creadas
         }
       });
     });
 
-    setConexionesDibujadas(nuevasConexiones);
-  }, [territorios]);
+    setConexionesDibujadas((prev) => [...prev, ...nuevasConexiones]);
+  }, [territorios, mostrar]);
 
-  return <group ref={grupoRef} />;
+  return mostrar ? <group ref={grupoRef} /> : null;
 };
 
 export default DibujarConexiones;
