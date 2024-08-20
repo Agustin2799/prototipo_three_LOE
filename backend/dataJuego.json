@@ -897,14 +897,14 @@
             "distancia": 12.04
           },
           {
-            "x": -66,
-            "y": 6,
-            "distancia": 7.62
+            "x": -67,
+            "y": 5,
+            "distancia": 8.94
           },
           {
             "x": -58,
-            "y": 2,
-            "distancia": 7.07
+            "y": 3,
+            "distancia": 6.08
           }
         ]
       },
@@ -933,8 +933,8 @@
           },
           {
             "x": -58,
-            "y": 2,
-            "distancia": 12.53
+            "y": 3,
+            "distancia": 12.08
           }
         ]
       },
@@ -1502,14 +1502,14 @@
             "distancia": 10
           },
           {
-            "x": -66,
-            "y": 6,
-            "distancia": 8.06
+            "x": -67,
+            "y": 5,
+            "distancia": 6.71
           },
           {
             "x": -58,
-            "y": 2,
-            "distancia": 12.37
+            "y": 3,
+            "distancia": 12.65
           }
         ]
       },
@@ -1517,19 +1517,19 @@
         "id": 66,
         "tipo": "terrestre",
         "coordenadas": {
-          "x": -66,
-          "y": 6
+          "x": -67,
+          "y": 5
         },
         "conexiones": [
           {
             "x": -70,
             "y": -1,
-            "distancia": 8.06
+            "distancia": 6.71
           },
           {
             "x": -59,
             "y": 9,
-            "distancia": 7.62
+            "distancia": 8.94
           }
         ]
       },
@@ -1538,28 +1538,1369 @@
         "tipo": "terrestre",
         "coordenadas": {
           "x": -58,
-          "y": 2
+          "y": 3
         },
         "conexiones": [
           {
             "x": -70,
             "y": -1,
-            "distancia": 12.37
+            "distancia": 12.65
           },
           {
             "x": -59,
             "y": 9,
-            "distancia": 7.07
+            "distancia": 6.08
           },
           {
             "x": -47,
             "y": 8,
-            "distancia": 12.53
+            "distancia": 12.08
           }
         ]
       }
     ],
-    "territorios_acuaticos": [],
+    "territorios_acuaticos": [
+      {
+        "id": 1,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -19,
+          "y": -21
+        },
+        "conexiones": [
+          {
+            "x": -35,
+            "y": -22,
+            "distancia": 16.03
+          },
+          {
+            "x": -24,
+            "y": -33,
+            "distancia": 13
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -35,
+          "y": -22
+        },
+        "conexiones": [
+          {
+            "x": -19,
+            "y": -21,
+            "distancia": 16.03
+          },
+          {
+            "x": -24,
+            "y": -33,
+            "distancia": 15.56
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -24,
+          "y": -33
+        },
+        "conexiones": [
+          {
+            "x": -35,
+            "y": -22,
+            "distancia": 15.56
+          },
+          {
+            "x": -19,
+            "y": -21,
+            "distancia": 13
+          },
+          {
+            "x": -27,
+            "y": -42,
+            "distancia": 9.49
+          },
+          {
+            "x": -16,
+            "y": -44,
+            "distancia": 13.6
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -27,
+          "y": -42
+        },
+        "conexiones": [
+          {
+            "x": -24,
+            "y": -33,
+            "distancia": 9.49
+          },
+          {
+            "x": -42,
+            "y": -48,
+            "distancia": 16.16
+          },
+          {
+            "x": -16,
+            "y": -44,
+            "distancia": 11.18
+          },
+          {
+            "x": -24,
+            "y": -53,
+            "distancia": 11.4
+          },
+          {
+            "x": -33,
+            "y": -51,
+            "distancia": 10.82
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -42,
+          "y": -48
+        },
+        "conexiones": [
+          {
+            "x": -27,
+            "y": -42,
+            "distancia": 16.16
+          },
+          {
+            "x": -33,
+            "y": -51,
+            "distancia": 9.49
+          },
+          {
+            "x": -38,
+            "y": -57,
+            "distancia": 9.85
+          },
+          {
+            "x": -51,
+            "y": -57,
+            "distancia": 12.73
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -16,
+          "y": -44
+        },
+        "conexiones": [
+          {
+            "x": -24,
+            "y": -33,
+            "distancia": 13.6
+          },
+          {
+            "x": -27,
+            "y": -42,
+            "distancia": 11.18
+          },
+          {
+            "x": -24,
+            "y": -53,
+            "distancia": 12.04
+          },
+          {
+            "x": -8,
+            "y": -57,
+            "distancia": 15.26
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -24,
+          "y": -53
+        },
+        "conexiones": [
+          {
+            "x": -16,
+            "y": -44,
+            "distancia": 12.04
+          },
+          {
+            "x": -27,
+            "y": -42,
+            "distancia": 11.4
+          },
+          {
+            "x": -8,
+            "y": -57,
+            "distancia": 16.49
+          },
+          {
+            "x": -24,
+            "y": -57,
+            "distancia": 4
+          },
+          {
+            "x": -33,
+            "y": -51,
+            "distancia": 9.22
+          },
+          {
+            "x": -38,
+            "y": -57,
+            "distancia": 14.56
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -8,
+          "y": -57
+        },
+        "conexiones": [
+          {
+            "x": -16,
+            "y": -44,
+            "distancia": 15.26
+          },
+          {
+            "x": -24,
+            "y": -53,
+            "distancia": 16.49
+          },
+          {
+            "x": -24,
+            "y": -57,
+            "distancia": 16
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -24,
+          "y": -57
+        },
+        "conexiones": [
+          {
+            "x": -24,
+            "y": -53,
+            "distancia": 4
+          },
+          {
+            "x": -8,
+            "y": -57,
+            "distancia": 16
+          },
+          {
+            "x": -38,
+            "y": -57,
+            "distancia": 14
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -33,
+          "y": -51
+        },
+        "conexiones": [
+          {
+            "x": -42,
+            "y": -48,
+            "distancia": 9.49
+          },
+          {
+            "x": -27,
+            "y": -42,
+            "distancia": 10.82
+          },
+          {
+            "x": -24,
+            "y": -53,
+            "distancia": 9.22
+          },
+          {
+            "x": -38,
+            "y": -57,
+            "distancia": 7.81
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -38,
+          "y": -57
+        },
+        "conexiones": [
+          {
+            "x": -24,
+            "y": -57,
+            "distancia": 14
+          },
+          {
+            "x": -24,
+            "y": -53,
+            "distancia": 14.56
+          },
+          {
+            "x": -33,
+            "y": -51,
+            "distancia": 7.81
+          },
+          {
+            "x": -42,
+            "y": -48,
+            "distancia": 9.85
+          },
+          {
+            "x": -51,
+            "y": -57,
+            "distancia": 13
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -51,
+          "y": -57
+        },
+        "conexiones": [
+          {
+            "x": -42,
+            "y": -48,
+            "distancia": 12.73
+          },
+          {
+            "x": -38,
+            "y": -57,
+            "distancia": 13
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": 41,
+          "y": -50
+        },
+        "conexiones": [
+          {
+            "x": 49,
+            "y": -36,
+            "distancia": 16.12
+          },
+          {
+            "x": 22,
+            "y": -52,
+            "distancia": 19.1
+          },
+          {
+            "x": 43,
+            "y": -57,
+            "distancia": 7.28
+          },
+          {
+            "x": 39,
+            "y": -46,
+            "distancia": 4.47
+          },
+          {
+            "x": 50,
+            "y": -51,
+            "distancia": 9.06
+          }
+        ]
+      },
+      {
+        "id": 14,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": 49,
+          "y": -36
+        },
+        "conexiones": [
+          {
+            "x": 41,
+            "y": -50,
+            "distancia": 16.12
+          },
+          {
+            "x": 40,
+            "y": -27,
+            "distancia": 12.73
+          },
+          {
+            "x": 60,
+            "y": -36,
+            "distancia": 11
+          },
+          {
+            "x": 52,
+            "y": -30,
+            "distancia": 6.71
+          },
+          {
+            "x": 39,
+            "y": -46,
+            "distancia": 14.14
+          },
+          {
+            "x": 50,
+            "y": -51,
+            "distancia": 15.03
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": 22,
+          "y": -52
+        },
+        "conexiones": [
+          {
+            "x": 41,
+            "y": -50,
+            "distancia": 19.1
+          },
+          {
+            "x": 43,
+            "y": -57,
+            "distancia": 21.59
+          },
+          {
+            "x": 39,
+            "y": -46,
+            "distancia": 18.03
+          }
+        ]
+      },
+      {
+        "id": 16,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": 43,
+          "y": -57
+        },
+        "conexiones": [
+          {
+            "x": 22,
+            "y": -52,
+            "distancia": 21.59
+          },
+          {
+            "x": 41,
+            "y": -50,
+            "distancia": 7.28
+          },
+          {
+            "x": 50,
+            "y": -51,
+            "distancia": 9.22
+          }
+        ]
+      },
+      {
+        "id": 17,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": 40,
+          "y": -27
+        },
+        "conexiones": [
+          {
+            "x": 49,
+            "y": -36,
+            "distancia": 12.73
+          },
+          {
+            "x": 52,
+            "y": -30,
+            "distancia": 12.37
+          },
+          {
+            "x": 55,
+            "y": -14,
+            "distancia": 19.85
+          }
+        ]
+      },
+      {
+        "id": 18,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": 60,
+          "y": -36
+        },
+        "conexiones": [
+          {
+            "x": 49,
+            "y": -36,
+            "distancia": 11
+          },
+          {
+            "x": 52,
+            "y": -30,
+            "distancia": 10
+          },
+          {
+            "x": 67,
+            "y": -28,
+            "distancia": 10.63
+          }
+        ]
+      },
+      {
+        "id": 19,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": 52,
+          "y": -30
+        },
+        "conexiones": [
+          {
+            "x": 49,
+            "y": -36,
+            "distancia": 6.71
+          },
+          {
+            "x": 60,
+            "y": -36,
+            "distancia": 10
+          },
+          {
+            "x": 40,
+            "y": -27,
+            "distancia": 12.37
+          },
+          {
+            "x": 55,
+            "y": -14,
+            "distancia": 16.28
+          },
+          {
+            "x": 67,
+            "y": -28,
+            "distancia": 15.13
+          },
+          {
+            "x": 61,
+            "y": -21,
+            "distancia": 12.73
+          }
+        ]
+      },
+      {
+        "id": 20,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": 55,
+          "y": -14
+        },
+        "conexiones": [
+          {
+            "x": 40,
+            "y": -27,
+            "distancia": 19.85
+          },
+          {
+            "x": 52,
+            "y": -30,
+            "distancia": 16.28
+          },
+          {
+            "x": 61,
+            "y": -21,
+            "distancia": 9.22
+          },
+          {
+            "x": 75,
+            "y": -10,
+            "distancia": 20.4
+          },
+          {
+            "x": 75,
+            "y": -3,
+            "distancia": 22.83
+          }
+        ]
+      },
+      {
+        "id": 21,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": 67,
+          "y": -28
+        },
+        "conexiones": [
+          {
+            "x": 52,
+            "y": -30,
+            "distancia": 15.13
+          },
+          {
+            "x": 60,
+            "y": -36,
+            "distancia": 10.63
+          },
+          {
+            "x": 61,
+            "y": -21,
+            "distancia": 9.22
+          },
+          {
+            "x": 75,
+            "y": -10,
+            "distancia": 19.7
+          },
+          {
+            "x": 76,
+            "y": -29,
+            "distancia": 9.06
+          }
+        ]
+      },
+      {
+        "id": 22,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": 61,
+          "y": -21
+        },
+        "conexiones": [
+          {
+            "x": 52,
+            "y": -30,
+            "distancia": 12.73
+          },
+          {
+            "x": 55,
+            "y": -14,
+            "distancia": 9.22
+          },
+          {
+            "x": 67,
+            "y": -28,
+            "distancia": 9.22
+          },
+          {
+            "x": 75,
+            "y": -10,
+            "distancia": 17.8
+          }
+        ]
+      },
+      {
+        "id": 23,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": 75,
+          "y": -10
+        },
+        "conexiones": [
+          {
+            "x": 55,
+            "y": -14,
+            "distancia": 20.4
+          },
+          {
+            "x": 61,
+            "y": -21,
+            "distancia": 17.8
+          },
+          {
+            "x": 67,
+            "y": -28,
+            "distancia": 19.7
+          },
+          {
+            "x": 76,
+            "y": -29,
+            "distancia": 19.03
+          },
+          {
+            "x": 75,
+            "y": -3,
+            "distancia": 7
+          }
+        ]
+      },
+      {
+        "id": 24,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": 76,
+          "y": -29
+        },
+        "conexiones": [
+          {
+            "x": 75,
+            "y": -10,
+            "distancia": 19.03
+          },
+          {
+            "x": 67,
+            "y": -28,
+            "distancia": 9.06
+          }
+        ]
+      },
+      {
+        "id": 25,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": 75,
+          "y": -3
+        },
+        "conexiones": [
+          {
+            "x": 55,
+            "y": -14,
+            "distancia": 22.83
+          },
+          {
+            "x": 75,
+            "y": -10,
+            "distancia": 7
+          }
+        ]
+      },
+      {
+        "id": 26,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": 39,
+          "y": -46
+        },
+        "conexiones": [
+          {
+            "x": 22,
+            "y": -52,
+            "distancia": 18.03
+          },
+          {
+            "x": 41,
+            "y": -50,
+            "distancia": 4.47
+          },
+          {
+            "x": 49,
+            "y": -36,
+            "distancia": 14.14
+          }
+        ]
+      },
+      {
+        "id": 27,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": 50,
+          "y": -51
+        },
+        "conexiones": [
+          {
+            "x": 41,
+            "y": -50,
+            "distancia": 9.06
+          },
+          {
+            "x": 43,
+            "y": -57,
+            "distancia": 9.22
+          },
+          {
+            "x": 49,
+            "y": -36,
+            "distancia": 15.03
+          }
+        ]
+      },
+      {
+        "id": 28,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -2,
+          "y": -13
+        },
+        "conexiones": [
+          {
+            "x": -9,
+            "y": -3,
+            "distancia": 12.21
+          },
+          {
+            "x": 10,
+            "y": -13,
+            "distancia": 12
+          },
+          {
+            "x": 2,
+            "y": -5,
+            "distancia": 8.94
+          }
+        ]
+      },
+      {
+        "id": 29,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -9,
+          "y": -3
+        },
+        "conexiones": [
+          {
+            "x": -2,
+            "y": -13,
+            "distancia": 12.21
+          },
+          {
+            "x": 2,
+            "y": -5,
+            "distancia": 11.18
+          },
+          {
+            "x": -1,
+            "y": 1,
+            "distancia": 8.94
+          },
+          {
+            "x": -11,
+            "y": 7,
+            "distancia": 10.2
+          },
+          {
+            "x": -18,
+            "y": 5,
+            "distancia": 12.04
+          }
+        ]
+      },
+      {
+        "id": 30,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": 10,
+          "y": -13
+        },
+        "conexiones": [
+          {
+            "x": -2,
+            "y": -13,
+            "distancia": 12
+          },
+          {
+            "x": 2,
+            "y": -5,
+            "distancia": 11.31
+          },
+          {
+            "x": 8,
+            "y": 0,
+            "distancia": 13.15
+          }
+        ]
+      },
+      {
+        "id": 31,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": 2,
+          "y": -5
+        },
+        "conexiones": [
+          {
+            "x": -9,
+            "y": -3,
+            "distancia": 11.18
+          },
+          {
+            "x": -2,
+            "y": -13,
+            "distancia": 8.94
+          },
+          {
+            "x": 10,
+            "y": -13,
+            "distancia": 11.31
+          },
+          {
+            "x": 8,
+            "y": 0,
+            "distancia": 7.81
+          },
+          {
+            "x": -1,
+            "y": 1,
+            "distancia": 6.71
+          }
+        ]
+      },
+      {
+        "id": 32,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": 8,
+          "y": 0
+        },
+        "conexiones": [
+          {
+            "x": 2,
+            "y": -5,
+            "distancia": 7.81
+          },
+          {
+            "x": 10,
+            "y": -13,
+            "distancia": 13.15
+          },
+          {
+            "x": -1,
+            "y": 8,
+            "distancia": 12.04
+          },
+          {
+            "x": -1,
+            "y": 1,
+            "distancia": 9.06
+          }
+        ]
+      },
+      {
+        "id": 33,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -1,
+          "y": 8
+        },
+        "conexiones": [
+          {
+            "x": 8,
+            "y": 0,
+            "distancia": 12.04
+          },
+          {
+            "x": -1,
+            "y": 1,
+            "distancia": 7
+          },
+          {
+            "x": -11,
+            "y": 7,
+            "distancia": 10.05
+          }
+        ]
+      },
+      {
+        "id": 34,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -1,
+          "y": 1
+        },
+        "conexiones": [
+          {
+            "x": -1,
+            "y": 8,
+            "distancia": 7
+          },
+          {
+            "x": 8,
+            "y": 0,
+            "distancia": 9.06
+          },
+          {
+            "x": 2,
+            "y": -5,
+            "distancia": 6.71
+          },
+          {
+            "x": -9,
+            "y": -3,
+            "distancia": 8.94
+          },
+          {
+            "x": -11,
+            "y": 7,
+            "distancia": 11.66
+          }
+        ]
+      },
+      {
+        "id": 35,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -11,
+          "y": 7
+        },
+        "conexiones": [
+          {
+            "x": -1,
+            "y": 1,
+            "distancia": 11.66
+          },
+          {
+            "x": -9,
+            "y": -3,
+            "distancia": 10.2
+          },
+          {
+            "x": -1,
+            "y": 8,
+            "distancia": 10.05
+          },
+          {
+            "x": -18,
+            "y": 5,
+            "distancia": 7.28
+          },
+          {
+            "x": -17,
+            "y": 12,
+            "distancia": 7.81
+          }
+        ]
+      },
+      {
+        "id": 36,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -18,
+          "y": 5
+        },
+        "conexiones": [
+          {
+            "x": -9,
+            "y": -3,
+            "distancia": 12.04
+          },
+          {
+            "x": -11,
+            "y": 7,
+            "distancia": 7.28
+          },
+          {
+            "x": -17,
+            "y": 12,
+            "distancia": 7.07
+          }
+        ]
+      },
+      {
+        "id": 37,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -17,
+          "y": 12
+        },
+        "conexiones": [
+          {
+            "x": -18,
+            "y": 5,
+            "distancia": 7.07
+          },
+          {
+            "x": -11,
+            "y": 7,
+            "distancia": 7.81
+          },
+          {
+            "x": -26,
+            "y": 13,
+            "distancia": 9.06
+          },
+          {
+            "x": -18,
+            "y": 18,
+            "distancia": 6.08
+          }
+        ]
+      },
+      {
+        "id": 38,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -26,
+          "y": 13
+        },
+        "conexiones": [
+          {
+            "x": -17,
+            "y": 12,
+            "distancia": 9.06
+          },
+          {
+            "x": -18,
+            "y": 18,
+            "distancia": 9.43
+          }
+        ]
+      },
+      {
+        "id": 39,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -18,
+          "y": 18
+        },
+        "conexiones": [
+          {
+            "x": -26,
+            "y": 13,
+            "distancia": 9.43
+          },
+          {
+            "x": -17,
+            "y": 12,
+            "distancia": 6.08
+          }
+        ]
+      },
+      {
+        "id": 40,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -29,
+          "y": 37
+        },
+        "conexiones": [
+          {
+            "x": -28,
+            "y": 43,
+            "distancia": 6.08
+          },
+          {
+            "x": -23,
+            "y": 33,
+            "distancia": 7.21
+          },
+          {
+            "x": -20,
+            "y": 38,
+            "distancia": 9.06
+          }
+        ]
+      },
+      {
+        "id": 41,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -28,
+          "y": 43
+        },
+        "conexiones": [
+          {
+            "x": -29,
+            "y": 37,
+            "distancia": 6.08
+          },
+          {
+            "x": -18,
+            "y": 43,
+            "distancia": 10
+          },
+          {
+            "x": -20,
+            "y": 38,
+            "distancia": 9.43
+          },
+          {
+            "x": -20,
+            "y": 47,
+            "distancia": 8.94
+          }
+        ]
+      },
+      {
+        "id": 42,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -23,
+          "y": 33
+        },
+        "conexiones": [
+          {
+            "x": -29,
+            "y": 37,
+            "distancia": 7.21
+          },
+          {
+            "x": -13,
+            "y": 30,
+            "distancia": 10.44
+          },
+          {
+            "x": -20,
+            "y": 38,
+            "distancia": 5.83
+          }
+        ]
+      },
+      {
+        "id": 43,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -13,
+          "y": 30
+        },
+        "conexiones": [
+          {
+            "x": -23,
+            "y": 33,
+            "distancia": 10.44
+          },
+          {
+            "x": -11,
+            "y": 36,
+            "distancia": 6.32
+          },
+          {
+            "x": -20,
+            "y": 38,
+            "distancia": 10.63
+          }
+        ]
+      },
+      {
+        "id": 44,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -11,
+          "y": 36
+        },
+        "conexiones": [
+          {
+            "x": -13,
+            "y": 30,
+            "distancia": 6.32
+          },
+          {
+            "x": -18,
+            "y": 43,
+            "distancia": 9.9
+          },
+          {
+            "x": -20,
+            "y": 38,
+            "distancia": 9.22
+          }
+        ]
+      },
+      {
+        "id": 45,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -18,
+          "y": 43
+        },
+        "conexiones": [
+          {
+            "x": -28,
+            "y": 43,
+            "distancia": 10
+          },
+          {
+            "x": -11,
+            "y": 36,
+            "distancia": 9.9
+          },
+          {
+            "x": -20,
+            "y": 38,
+            "distancia": 5.39
+          },
+          {
+            "x": -20,
+            "y": 47,
+            "distancia": 4.47
+          }
+        ]
+      },
+      {
+        "id": 46,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -20,
+          "y": 38
+        },
+        "conexiones": [
+          {
+            "x": -23,
+            "y": 33,
+            "distancia": 5.83
+          },
+          {
+            "x": -13,
+            "y": 30,
+            "distancia": 10.63
+          },
+          {
+            "x": -11,
+            "y": 36,
+            "distancia": 9.22
+          },
+          {
+            "x": -18,
+            "y": 43,
+            "distancia": 5.39
+          },
+          {
+            "x": -28,
+            "y": 43,
+            "distancia": 9.43
+          },
+          {
+            "x": -29,
+            "y": 37,
+            "distancia": 9.06
+          }
+        ]
+      },
+      {
+        "id": 47,
+        "tipo": "acuatico",
+        "coordenadas": {
+          "x": -20,
+          "y": 47
+        },
+        "conexiones": [
+          {
+            "x": -28,
+            "y": 43,
+            "distancia": 8.94
+          },
+          {
+            "x": -18,
+            "y": 43,
+            "distancia": 4.47
+          }
+        ]
+      }
+    ],
     "territorios_costeros": []
   }
 }

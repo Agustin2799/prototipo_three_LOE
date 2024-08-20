@@ -207,9 +207,9 @@ function App() {
           {/* Componente para mostrar los ejes */}
           <Ejes />
           {/* Dibuja las ubicaciones en el mapa */}
-          <DibujaPunto territorios={store.datosDelJuego.mapa.territorios_terrestres} mostrar={store.banderas.mostrarPuntos } />
+          <DibujaPunto mapa={store.datosDelJuego.mapa} mostrar={store.banderas.mostrarPuntos } />
           {/* Dibuja las conecciones de los puntos */}
-          <DibujarConexiones territorios={store.datosDelJuego.mapa.territorios_terrestres} mostrar={store.banderas.mostrarConexiones } />
+          <DibujarConexiones mapa={store.datosDelJuego.mapa} mostrar={store.banderas.mostrarConexiones } />
           {/* Configuración de la cámara con posición, campo de visión y rotación */}
           <PerspectiveCamera
             ref={cameraRef}

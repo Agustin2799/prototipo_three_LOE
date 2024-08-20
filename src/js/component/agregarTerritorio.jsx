@@ -9,13 +9,16 @@ const AgregarTerritorio = ({ mostrar }) => {
 
   // Efecto para actualizar las coordenadas según coordsClickeadas
   useEffect(() => {
+    const valuesCoords = store.coordsClickeadas
+      ? store.coordsClickeadas
+      : { x: 0, y: 0 };
     if (!conexiones.length) {
       // Si no hay conexiones, actualiza el origen
-      setOrigen(store.coordsClickeadas);
+      setOrigen(valuesCoords);
     } else {
       // Si ya hay conexiones, actualiza la última conexión
       const nuevasConexiones = [...conexiones];
-      nuevasConexiones[nuevasConexiones.length - 1] = store.coordsClickeadas;
+      nuevasConexiones[nuevasConexiones.length - 1] = valuesCoords;
       setConexiones(nuevasConexiones);
     }
   }, [store.coordsClickeadas]); // Ejecuta este efecto cada vez que coordsClickeadas cambie
@@ -39,9 +42,9 @@ const AgregarTerritorio = ({ mostrar }) => {
   };
 
   const agregarConexion = () => {
-    if (conexiones.length < 5) {
+    
       setConexiones([...conexiones, { x: "", y: "" }]);
-    }
+    
   };
 
   const eliminarConexion = (index) => {
@@ -54,9 +57,9 @@ const AgregarTerritorio = ({ mostrar }) => {
   };
 
   const agregarTerritorio = () => {
-    if (tipoTerritorio === "terrestre") {
+    if (tipoTerritorio !== "costero") {
       console.log("en el if terrestre");
-      actions.agregarTerritorioTerrestre(origen, conexiones);
+      actions.agregarTerritorio(origen, conexiones, tipoTerritorio);
       // Limpia el estado de conexiones después de agregar el territorio
       setConexiones([]);
     }
@@ -85,7 +88,7 @@ const AgregarTerritorio = ({ mostrar }) => {
         <option className="bg-dark" value="terrestre">
           Terrestre
         </option>
-        <option className="bg-dark" value="acuático">
+        <option className="bg-dark" value="acuatico">
           Acuático
         </option>
         <option className="bg-dark" value="costero">
@@ -113,7 +116,7 @@ const AgregarTerritorio = ({ mostrar }) => {
                   aria-label="Sizing example input"
                   aria-describedby="inputGroup-sizing-sm"
                   name="x"
-                  value={origen.x}
+                  value={origen.x || 0}
                   onChange={cambioDeOrigen}
                   min="-Infinity"
                 />
@@ -133,7 +136,7 @@ const AgregarTerritorio = ({ mostrar }) => {
                   aria-label="Sizing example input"
                   aria-describedby="inputGroup-sizing-sm"
                   name="y"
-                  value={origen.y}
+                  value={origen.y || 0}
                   onChange={cambioDeOrigen}
                   min="-Infinity"
                 />
@@ -162,7 +165,7 @@ const AgregarTerritorio = ({ mostrar }) => {
                       aria-label="Sizing example input"
                       aria-describedby="inputGroup-sizing-sm"
                       name="x"
-                      value={conexion.x}
+                      value={conexion.x || 0}
                       onChange={(e) => modificarConexion(index, e)}
                       min="-Infinity"
                     />
@@ -182,7 +185,7 @@ const AgregarTerritorio = ({ mostrar }) => {
                       aria-label="Sizing example input"
                       aria-describedby="inputGroup-sizing-sm"
                       name="y"
-                      value={conexion.y}
+                      value={conexion.y || 0}
                       onChange={(e) => modificarConexion(index, e)}
                       min="-Infinity"
                     />
@@ -202,7 +205,6 @@ const AgregarTerritorio = ({ mostrar }) => {
           </div>
         ))}
 
-        {conexiones.length < 5 && (
           <div className="col-12 d-flex justify-content-center row">
             <button
               className="btn ms-4 col-12 btn-outline-secondary btn-sm add mt-3 p-0 d-flex justify-content-center align-items-center pb-1"
@@ -211,7 +213,6 @@ const AgregarTerritorio = ({ mostrar }) => {
               Agregar Conexión
             </button>
           </div>
-        )}
       </div>
 
       <button
