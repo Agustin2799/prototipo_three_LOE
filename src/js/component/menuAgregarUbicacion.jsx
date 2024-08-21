@@ -1,11 +1,15 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 
-const AgregarTerritorio = ({ mostrar }) => {
+const MenuAgregarUbicacion = ({ mostrar }) => {
   const { store, actions } = useContext(Context);
   const [tipoTerritorio, setTipoTerritorio] = useState(null);
   const [origen, setOrigen] = useState({ x: "", y: "" });
   const [conexiones, setConexiones] = useState([]);
+
+  // useEffect(() => {
+  //   console.log(mostrar)
+  // },[mostrar])
 
   // Efecto para actualizar las coordenadas según coordsClickeadas
   useEffect(() => {
@@ -42,9 +46,7 @@ const AgregarTerritorio = ({ mostrar }) => {
   };
 
   const agregarConexion = () => {
-    
       setConexiones([...conexiones, { x: "", y: "" }]);
-    
   };
 
   const eliminarConexion = (index) => {
@@ -57,12 +59,9 @@ const AgregarTerritorio = ({ mostrar }) => {
   };
 
   const agregarTerritorio = () => {
-    if (tipoTerritorio !== "costero") {
-      console.log("en el if terrestre");
       actions.agregarTerritorio(origen, conexiones, tipoTerritorio);
       // Limpia el estado de conexiones después de agregar el territorio
       setConexiones([]);
-    }
   };
 
   const eliminarUltimoTerritorio = () => {
@@ -233,4 +232,4 @@ const AgregarTerritorio = ({ mostrar }) => {
   );
 };
 
-export default AgregarTerritorio;
+export default MenuAgregarUbicacion;

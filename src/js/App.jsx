@@ -8,6 +8,7 @@ import { Context } from "./store/appContext.js";
 import Menu from "./component/menu.jsx";
 import DibujaPunto from "./component/dibujaPunto.jsx";
 import DibujarConexiones from "./component/dibujaLineas.jsx";
+import DibujaTerritorio from "./component/dibujaTerritorio.jsx";
 
 /* Sobre Raycaster
 
@@ -152,16 +153,24 @@ function App() {
 
   
 
-  /* Sobre el este useEffect 
+  // Tiempo mínimo en milisegundos para que un evento sea considerado un clic (ajustar según necesidad).
+  const TIEMPO_MAXIMO_CLIC = 200;
+  const tiempoPresionadoRef = useRef(0);
+  const esClic = useRef(true);
 
-    Este useEffect permite que cada vez que un usuario haga clic en el canvas
-    se calculen las coordenadas del clic en el mapa 3D, y estas coordenadas se
-    almacenen en el estado global de la aplicación. 
-     
-    También asegura que el manejador de eventos se limpie 
-    correctamente cuando el componente se desmonte.
+  /* Sobre este useEffect
 
-     */
+    Este useEffect se encarga de gestionar los eventos de clic y de arrastre en el canvas del mapa 3D. 
+
+    - `mousedown`: Registra el momento en que el usuario presiona el botón del ratón, estableciendo un temporizador para determinar si el evento se considera un clic o un arrastre.
+    - `mouseup`: Registra el momento en que el usuario suelta el botón del ratón. Compara el tiempo transcurrido desde el `mousedown` para decidir si se trata de un clic o un arrastre. Si el tiempo supera un umbral definido (TIEMPO_MAXIMO_CLIC), se considera un arrastre y no se actualizarán las coordenadas.
+    - `click`: Se ejecuta cuando se detecta un clic en el canvas. Calcula las coordenadas del clic en el mapa 3D y, si es un clic (y no un arrastre), actualiza el estado global con estas coordenadas mediante `actions.changeCoordsClickeadas`.
+
+    Además, el `useEffect` asegura que todos los manejadores de eventos se eliminen correctamente cuando el componente se desmonte para evitar fugas de memoria.
+
+    Nota: Los manejadores de eventos se añaden al canvas del mapa y se eliminan en la función de limpieza del `useEffect`.
+
+*/
   useEffect(() => {
     const click = (event) => {
       const coords = obtenerCoordenadasDelMapa(
@@ -169,16 +178,32 @@ function App() {
         cameraRef.current,
         planeRef.current
       );
-      if (coords) {
+      if (coords && esClic.current) {
         actions.changeCoordsClickeadas(coords.x, coords.y);
-     }
+      }
+    };
+
+    const mouseDown = () => {
+      tiempoPresionadoRef.current = Date.now();
+      esClic.current = true;
+    };
+
+    const mouseUp = () => {
+      const tiempoPresionado = Date.now() - tiempoPresionadoRef.current;
+      if (tiempoPresionado > TIEMPO_MAXIMO_CLIC) {
+        esClic.current = false;
+      }
     };
 
     const canvas = canvasContainer.current;
 
+    canvas.addEventListener("mousedown", mouseDown);
+    canvas.addEventListener("mouseup", mouseUp);
     canvas.addEventListener("click", click);
 
     return () => {
+      canvas.removeEventListener("mousedown", mouseDown);
+      canvas.removeEventListener("mouseup", mouseUp);
       canvas.removeEventListener("click", click);
     };
   }, []);
@@ -207,9 +232,24 @@ function App() {
           {/* Componente para mostrar los ejes */}
           <Ejes />
           {/* Dibuja las ubicaciones en el mapa */}
-          <DibujaPunto mapa={store.datosDelJuego.mapa} mostrar={store.banderas.mostrarPuntos } />
+          <DibujaPunto
+            coordenadas={store.datosDelJuego.mapa}
+            mostrar={store.banderas.mostrarConexiones}
+            tipo={"ubicaciones"}
+          />
+          {/* Dibuja las ubicaciones en el mapa */}
+          <DibujaPunto
+            coordenadas={store.marcadores}
+            mostrar={store.banderas.mostrarMarcadores}
+            tipo={"marcadores"}
+          />
           {/* Dibuja las conecciones de los puntos */}
-          <DibujarConexiones mapa={store.datosDelJuego.mapa} mostrar={store.banderas.mostrarConexiones } />
+          <DibujarConexiones
+            mapa={store.datosDelJuego.mapa}
+            mostrar={store.banderas.mostrarConexiones}
+          />
+          {/* Dibuaja los territorios */}
+          <DibujaTerritorio />
           {/* Configuración de la cámara con posición, campo de visión y rotación */}
           <PerspectiveCamera
             ref={cameraRef}

@@ -4,8 +4,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			banderas: {
-				agregarTerritorio: false,
-				mostrarPuntos: false,
+				menuAgregarUbicacion: false,
+				menuAgregarMarcador: false,
+				mostrarMarcadores: false,
 				mostrarConexiones: false
 			},
 			posicionCamara: {
@@ -17,6 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				x: null,
 				y: null
 			},
+			marcadores: [],
 			datosDelJuego: {
 				mapa: {
 					id: null,
@@ -33,25 +35,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 			}
 		},
 		actions: {
+			eliminarUltimoMarcador: () => {
+				const store = getStore()
+				setStore({marcadores:store.marcadores.slice(0, -1)})
+			},
+			agregarMarcador: () => {
+				const store = getStore()
+				setStore({marcadores: [...store.marcadores, store.coordsClickeadas]})
+			},
 			changeBanderas: (bandera) => {
 				const store = getStore();
 				const { banderas } = store;
 
 				console.log(bandera)
 				switch (bandera) {
-					case 'agregar territorios':
+					
+					case 'mostrar menu agregar ubicacion':
+						console.log("en el switch")
 						setStore({
 							banderas: {
 								...banderas,
-								agregarTerritorio: !banderas.agregarTerritorio
-							}
-						});
-						break;
-					case 'mostrar puntos':
-						setStore({
-							banderas: {
-								...banderas,
-								mostrarPuntos: !banderas.mostrarPuntos
+								menuAgregarUbicacion: !banderas.menuAgregarUbicacion
 							}
 						});
 						break;
@@ -60,6 +64,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 							banderas: {
 								...banderas,
 								mostrarConexiones: !banderas.mostrarConexiones
+							}
+						});
+						break;
+					case 'mostrar marcadores':
+						setStore({
+							banderas: {
+								...banderas,
+								mostrarMarcadores: !banderas.mostrarMarcadores
+							}
+						});
+						break;
+					case 'mostrar menu agregar marcador':
+						setStore({
+							banderas: {
+								...banderas,
+								menuAgregarMarcador: !banderas.menuAgregarMarcador
 							}
 						});
 						break;
@@ -74,7 +94,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				// Redondea las coordenadas a números enteros y actualiza el estado global
 				setStore({
-					...store, // Mantiene el resto del estado sin cambios
 					coordsClickeadas: {
 						x: parseFloat(x.toFixed(0)), // Redondea la coordenada x
 						y: parseFloat(y.toFixed(0))  // Redondea la coordenada y
@@ -106,6 +125,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 						terr => terr.coordenadas.x === origen.x && terr.coordenadas.y === origen.y
 					);
 					nuevoId = () => store.datosDelJuego.mapa.territorios_acuaticos.length + 1;
+				} else {
+					console.log('en el if costero')
+					// Verifica si ya existe un territorio en las coordenadas de origen
+					territorioExistente = store.datosDelJuego.mapa.territorios_costeros.find(
+						terr => terr.coordenadas.x === origen.x && terr.coordenadas.y === origen.y
+					);
+					nuevoId = () => store.datosDelJuego.mapa.territorios_costeros.length + 1;
 				}
 
 
@@ -116,7 +142,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 
 
-				// Crea un nuevo objeto de territorio terrestre
+				// Crea un nuevo objeto de territorio generico
 				const newTerr = {
 					id: nuevoId(), // Asigna el ID incremental al nuevo territorio
 					tipo: tipo, // Especifica que es un territorio terrestre
@@ -134,12 +160,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}))
 				};
 
-				// Actualiza el store con el nuevo territorio agregado
+				// Actualiza el store con el nuevo territorio agregado porque ya corroboramos que no existe
 				if (tipo === 'terrestre') {
 					console.log('en el if terrestre')
 
 					setStore({
-						...store, // Mantiene el resto del estado sin cambios
 						datosDelJuego: {
 							...store.datosDelJuego, // Mantiene el resto de los datos del juego sin cambios
 							mapa: {
@@ -155,7 +180,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log('en el if acuatico')
 
 					setStore({
-						...store, // Mantiene el resto del estado sin cambios
 						datosDelJuego: {
 							...store.datosDelJuego, // Mantiene el resto de los datos del juego sin cambios
 							mapa: {
@@ -167,20 +191,41 @@ const getState = ({ getStore, getActions, setStore }) => {
 							}
 						}
 					});
+				} else {
+					//Si no existe punto para esa conexion, crea un nuevo punto
+					setStore({
+						datosDelJuego: {
+							...store.datosDelJuego, // Mantiene el resto de los datos del juego sin cambios
+							mapa: {
+								...store.datosDelJuego.mapa, // Mantiene el resto del mapa sin cambios
+								territorios_costeros: [
+									...store.datosDelJuego.mapa.territorios_costeros, // Mantiene los territorios terrestres existentes
+									newTerr // Agrega el nuevo territorio a la lista
+								]
+							}
+						}
+					});
 				}
 
-				// Verifica si las coordenadas de conexión ya existen en otros territorios
+				// Verifica para cada conexion, si es un punto que ya existe en el mapa, para actualizar sus conexiones e incluir la conexion con el nuevo punto.
 				conexiones.forEach(coords => {
-					let territorioExistente;
+					let territorioConexionTerrestreExistente;
+					let territorioConexionAcuaticoExistente;
+					let territorioConexionCosteroExistente;
+
+					//Si el nuevo territorio es de tipo terrestre, solo tedrá como posibles conexiones a un territorio terrestre o costero
 					if (tipo === 'terrestre') {
-						console.log('en el if terrestre')
-						territorioExistente = store.datosDelJuego.mapa.territorios_terrestres.find(
-							terr => terr.coordenadas.x === coords.x && terr.coordenadas.y === coords.y // Busca si ya existe un territorio en esas coordenadas
+						console.log(' forEach para cada conexión de un territorio terrestre');
+						territorioConexionTerrestreExistente = store.datosDelJuego.mapa.territorios_terrestres.find(
+							terr => terr.coordenadas.x === coords.x && terr.coordenadas.y === coords.y // Busca si ya existe un territorio terrestre en esas coordenadas
 						);
-						if (territorioExistente) {
+						territorioConexionCosteroExistente = store.datosDelJuego.mapa.territorios_costeros.find(
+							terr => terr.coordenadas.x === coords.x && terr.coordenadas.y === coords.y // Busca si ya existe un territorio costero en esas coordenadas
+						);
+						if (territorioConexionTerrestreExistente || territorioConexionCosteroExistente) {
 							// Si ya existe, actualiza las conexiones de ese territorio
 							const conexionesActualizadas = [
-								...territorioExistente.conexiones, // Mantiene las conexiones existentes
+								...(territorioConexionTerrestreExistente ? territorioConexionTerrestreExistente : territorioConexionCosteroExistente).conexiones, // Mantiene las conexiones existentes
 								{
 									x: origen.x, // Agrega la conexión al nuevo territorio
 									y: origen.y,
@@ -190,33 +235,62 @@ const getState = ({ getStore, getActions, setStore }) => {
 									).toFixed(2)) // Redondea la distancia a dos decimales
 								}
 							];
+							//En el caso de que la se detecte una conexion con un territorio terrestre que ya existe
+							if (territorioConexionTerrestreExistente) {
+								console.log('El nuevo teritorio terrestre tiene una conexion con un territorio terrestre que ya existe, se actualizaron sus conexiones:', conexionesActualizadas)
 
-							// Actualiza la lista de territorios con las nuevas conexiones
-							const territoriosActualizados = store.datosDelJuego.mapa.territorios_terrestres.map(terr => {
-								if (terr.coordenadas.x === coords.x && terr.coordenadas.y === coords.y) {
-									return {
-										...terr, // Mantiene el resto del territorio sin cambios
-										conexiones: conexionesActualizadas // Actualiza las conexiones con la nueva conexión
-									};
-								}
-								return terr; // Si no es el territorio correspondiente, lo deja sin cambios
-							});
-
-							// Guarda los territorios actualizados en el store
-							setStore({
-								...store, // Mantiene el resto del estado sin cambios
-								datosDelJuego: {
-									...store.datosDelJuego, // Mantiene el resto de los datos del juego sin cambios
-									mapa: {
-										...store.datosDelJuego.mapa, // Mantiene el resto del mapa sin cambios
-										territorios_terrestres: territoriosActualizados // Actualiza la lista de territorios terrestres
+								// Actualiza la lista de territorios con las nuevas conexiones
+								const territoriosActualizados = store.datosDelJuego.mapa.territorios_terrestres.map(terr => {
+									if (terr.coordenadas.x === coords.x && terr.coordenadas.y === coords.y) {
+										return {
+											...terr, // Mantiene el resto del territorio sin cambios
+											conexiones: conexionesActualizadas // Actualiza las conexiones con la nueva conexión
+										};
 									}
-								}
-							});
+									return terr; // Si no es el territorio correspondiente, lo deja sin cambios
+								});
+
+								// Guarda los territorios actualizados en el store
+								setStore({
+									datosDelJuego: {
+										...store.datosDelJuego, // Mantiene el resto de los datos del juego sin cambios
+										mapa: {
+											...store.datosDelJuego.mapa, // Mantiene el resto del mapa sin cambios
+											territorios_terrestres: territoriosActualizados // Actualiza la lista de territorios terrestres
+										}
+									}
+								});
+							} else if (territorioConexionCosteroExistente) {
+								console.log('El nuevo teritorio terrestre tiene una conexion con un territorio costero que ya existe, se actualizaron sus conexiones:', conexionesActualizadas)
+
+								// Actualiza la lista de territorios con las nuevas conexiones
+								const territoriosActualizados = store.datosDelJuego.mapa.territorios_costeros.map(terr => {
+									if (terr.coordenadas.x === coords.x && terr.coordenadas.y === coords.y) {
+										return {
+											...terr, // Mantiene el resto del territorio sin cambios
+											conexiones: conexionesActualizadas // Actualiza las conexiones con la nueva conexión
+										};
+									}
+									return terr; // Si no es el territorio correspondiente, lo deja sin cambios
+								});
+
+								// Guarda los territorios actualizados en el store
+								setStore({
+									datosDelJuego: {
+										...store.datosDelJuego, // Mantiene el resto de los datos del juego sin cambios
+										mapa: {
+											...store.datosDelJuego.mapa, // Mantiene el resto del mapa sin cambios
+											territorios_costeros: territoriosActualizados // Actualiza la lista de territorios terrestres
+										}
+									}
+								});
+							}
+
+
 						} else {
+							console.log("No existe un territorio para esa conexion, territorio terrestre creado en su lugar.")
 							// Si no existe el territorio, crea uno nuevo y lo agrega
 							setStore({
-								...store, // Mantiene el resto del estado sin cambios
 								datosDelJuego: {
 									...store.datosDelJuego, // Mantiene el resto de los datos del juego sin cambios
 									mapa: {
@@ -245,15 +319,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 							});
 						}
 					} else if (tipo === 'acuatico') {
-						console.log('en el if acuatico');
+						console.log(' forEach para cada conexión de un territorio acuatico');
 
-						territorioExistente = store.datosDelJuego.mapa.territorios_acuaticos.find(
-							terr => terr.coordenadas.x === coords.x && terr.coordenadas.y === coords.y // Busca si ya existe un territorio en esas coordenadas
+						territorioConexionAcuaticoExistente = store.datosDelJuego.mapa.territorios_acuaticos.find(
+							terr => terr.coordenadas.x === coords.x && terr.coordenadas.y === coords.y // Busca si ya existe un territorio acuatico en esas coordenadas
 						);
-						if (territorioExistente) {
+
+						territorioConexionCosteroExistente = store.datosDelJuego.mapa.territorios_costeros.find(
+							terr => terr.coordenadas.x === coords.x && terr.coordenadas.y === coords.y // Busca si ya existe un territorio costero en esas coordenadas
+						);
+
+						if (territorioConexionCosteroExistente || territorioConexionAcuaticoExistente) {
 							// Si ya existe, actualiza las conexiones de ese territorio
 							const conexionesActualizadas = [
-								...territorioExistente.conexiones, // Mantiene las conexiones existentes
+								...(territorioConexionCosteroExistente ? territorioConexionCosteroExistente : territorioConexionAcuaticoExistente).conexiones, // Mantiene las conexiones existentes
 								{
 									x: origen.x, // Agrega la conexión al nuevo territorio
 									y: origen.y,
@@ -264,58 +343,157 @@ const getState = ({ getStore, getActions, setStore }) => {
 								}
 							];
 
-							// Actualiza la lista de territorios acuáticos con las nuevas conexiones
-							const territoriosActualizados = store.datosDelJuego.mapa.territorios_acuaticos.map(terr => {
-								if (terr.coordenadas.x === coords.x && terr.coordenadas.y === coords.y) {
-									return {
-										...terr, // Mantiene el resto del territorio sin cambios
-										conexiones: conexionesActualizadas // Actualiza las conexiones con la nueva conexión
-									};
-								}
-								return terr; // Si no es el territorio correspondiente, lo deja sin cambios
-							});
+							if (territorioConexionAcuaticoExistente) {
+								console.log('El nuevo teritorio acuatico tiene una conexion con un territorio acuatico que ya existe, se actualizaron sus conexiones:', conexionesActualizadas)
+								// Actualiza la lista de territorios acuáticos con las nuevas conexiones
+								const territoriosActualizados = store.datosDelJuego.mapa.territorios_acuaticos.map(terr => {
+									if (terr.coordenadas.x === coords.x && terr.coordenadas.y === coords.y) {
+										return {
+											...terr, // Mantiene el resto del territorio sin cambios
+											conexiones: conexionesActualizadas // Actualiza las conexiones con la nueva conexión
+										};
+									}
+									return terr; // Si no es el territorio correspondiente, lo deja sin cambios
+								});
 
-							// Guarda los territorios actualizados en el store
-							setStore({
-								...store, // Mantiene el resto del estado sin cambios
-								datosDelJuego: {
-									...store.datosDelJuego, // Mantiene el resto de los datos del juego sin cambios
-									mapa: {
-										...store.datosDelJuego.mapa, // Mantiene el resto del mapa sin cambios
-										territorios_acuaticos: territoriosActualizados // Actualiza la lista de territorios acuáticos
+								// Guarda los territorios actualizados en el store
+								setStore({
+									datosDelJuego: {
+										...store.datosDelJuego, // Mantiene el resto de los datos del juego sin cambios
+										mapa: {
+											...store.datosDelJuego.mapa, // Mantiene el resto del mapa sin cambios
+											territorios_acuaticos: territoriosActualizados // Actualiza la lista de territorios acuáticos
+										}
 									}
-								}
-							});
+								});
+							} else if (territorioConexionCosteroExistente) {
+								console.log('El nuevo teritorio acuatico tiene una conexion con un territorio costero que ya existe, se actualizaron sus conexiones:', conexionesActualizadas)
+								// Actualiza la lista de territorios acuáticos con las nuevas conexiones
+								const territoriosActualizados = store.datosDelJuego.mapa.territorios_costeros.map(terr => {
+									if (terr.coordenadas.x === coords.x && terr.coordenadas.y === coords.y) {
+										return {
+											...terr, // Mantiene el resto del territorio sin cambios
+											conexiones: conexionesActualizadas // Actualiza las conexiones con la nueva conexión
+										};
+									}
+									return terr; // Si no es el territorio correspondiente, lo deja sin cambios
+								});
+
+								// Guarda los territorios actualizados en el store
+								setStore({
+									datosDelJuego: {
+										...store.datosDelJuego, // Mantiene el resto de los datos del juego sin cambios
+										mapa: {
+											...store.datosDelJuego.mapa, // Mantiene el resto del mapa sin cambios
+											territorios_costeros: territoriosActualizados // Actualiza la lista de territorios acuáticos
+										}
+									}
+								});
+							}
 						} else {
-							// Si no existe el territorio, crea uno nuevo y lo agrega
-							setStore({
-								...store, // Mantiene el resto del estado sin cambios
-								datosDelJuego: {
-									...store.datosDelJuego, // Mantiene el resto de los datos del juego sin cambios
-									mapa: {
-										...store.datosDelJuego.mapa, // Mantiene el resto del mapa sin cambios
-										territorios_acuaticos: [
-											...store.datosDelJuego.mapa.territorios_acuaticos, // Mantiene los territorios existentes
-											{
-												id: nuevoId(), // Asigna el ID incremental
-												tipo: tipo, // Especifica que es un territorio acuático
-												coordenadas: {
-													x: coords.x, // Coordenada x de la nueva conexión
-													y: coords.y  // Coordenada y de la nueva conexión
-												},
-												conexiones: [{
-													x: origen.x, // Conexión al nuevo territorio
-													y: origen.y,
-													distancia: parseFloat(Math.sqrt(
-														Math.pow(origen.x - coords.x, 2) + // Calcula la distancia en x
-														Math.pow(origen.y - coords.y, 2)   // Calcula la distancia en y
-													).toFixed(2)) // Redondea la distancia a dos decimales
-												}]
-											}
-										]
+								console.log("No existe un territorio para esa conexion, territorio acuatico creado en su lugar.")
+								// Si no existe el territorio, crea uno nuevo y lo agrega
+								setStore({
+									datosDelJuego: {
+										...store.datosDelJuego, // Mantiene el resto de los datos del juego sin cambios
+										mapa: {
+											...store.datosDelJuego.mapa, // Mantiene el resto del mapa sin cambios
+											territorios_acuaticos: [
+												...store.datosDelJuego.mapa.territorios_acuaticos, // Mantiene los territorios existentes
+												{
+													id: nuevoId(), // Asigna el ID incremental
+													tipo: tipo, // Especifica que es un territorio acuático
+													coordenadas: {
+														x: coords.x, // Coordenada x de la nueva conexión
+														y: coords.y  // Coordenada y de la nueva conexión
+													},
+													conexiones: [{
+														x: origen.x, // Conexión al nuevo territorio
+														y: origen.y,
+														distancia: parseFloat(Math.sqrt(
+															Math.pow(origen.x - coords.x, 2) + // Calcula la distancia en x
+															Math.pow(origen.y - coords.y, 2)   // Calcula la distancia en y
+														).toFixed(2)) // Redondea la distancia a dos decimales
+													}]
+												}
+											]
+										}
 									}
+								});
+							}
+						
+					} else {
+						console.log(' forEach para cada conexión de un territorio costero');
+
+						territorioConexionAcuaticoExistente = store.datosDelJuego.mapa.territorios_acuaticos.find(
+							terr => terr.coordenadas.x === coords.x && terr.coordenadas.y === coords.y // Busca si ya existe un territorio en esas coordenadas
+						);
+						console.log(territorioConexionAcuaticoExistente) // al menos uno de estos dos console.log debe ser undefined
+						territorioConexionTerrestreExistente = store.datosDelJuego.mapa.territorios_terrestres.find(
+							terr => terr.coordenadas.x === coords.x && terr.coordenadas.y === coords.y // Busca si ya existe un territorio en esas coordenadas
+						);
+						console.log(territorioConexionTerrestreExistente) // al menos uno de estos dos console.log debe ser undefined
+						if (territorioConexionTerrestreExistente || territorioConexionAcuaticoExistente) {
+							// Si ya existe, actualiza las conexiones de ese territorio
+							const conexionesActualizadas = [
+								...(territorioConexionTerrestreExistente ? territorioConexionTerrestreExistente: territorioConexionAcuaticoExistente).conexiones, // Mantiene las conexiones existentes
+								{
+									x: origen.x, // Agrega la conexión al nuevo territorio
+									y: origen.y,
+									distancia: parseFloat(Math.sqrt(
+										Math.pow(origen.x - coords.x, 2) + // Calcula la distancia en x entre el origen y la conexión existente
+										Math.pow(origen.y - coords.y, 2)   // Calcula la distancia en y entre el origen y la conexión existente
+									).toFixed(2)) // Redondea la distancia a dos decimales
 								}
-							});
+							];
+							
+							if (territorioConexionAcuaticoExistente) {
+								console.log('El nuevo teritorio costero tiene una conexion con un territorio acuatico que ya existe, se actualizaron sus conexiones:', conexionesActualizadas)
+								// Actualiza la lista de territorios acuáticos con las nuevas conexiones
+								const territoriosActualizados = store.datosDelJuego.mapa.territorios_acuaticos.map(terr => {
+									if (terr.coordenadas.x === coords.x && terr.coordenadas.y === coords.y) {
+										return {
+											...terr, // Mantiene el resto del territorio sin cambios
+											conexiones: conexionesActualizadas // Actualiza las conexiones con la nueva conexión
+										};
+									}
+									return terr; // Si no es el territorio correspondiente, lo deja sin cambios
+								});
+
+								// Guarda los territorios actualizados en el store
+								setStore({
+									datosDelJuego: {
+										...store.datosDelJuego, // Mantiene el resto de los datos del juego sin cambios
+										mapa: {
+											...store.datosDelJuego.mapa, // Mantiene el resto del mapa sin cambios
+											territorios_acuaticos: territoriosActualizados // Actualiza la lista de territorios acuáticos
+										}
+									}
+								});
+							} else if (territorioConexionTerrestreExistente) {
+								console.log('El nuevo teritorio costero tiene una conexion con un territorio terrestre que ya existe, se actualizaron sus conexiones:', conexionesActualizadas)
+								// Actualiza la lista de territorios acuáticos con las nuevas conexiones
+								const territoriosActualizados = store.datosDelJuego.mapa.territorios_terrestres.map(terr => {
+									if (terr.coordenadas.x === coords.x && terr.coordenadas.y === coords.y) {
+										return {
+											...terr, // Mantiene el resto del territorio sin cambios
+											conexiones: conexionesActualizadas // Actualiza las conexiones con la nueva conexión
+										};
+									}
+									return terr; // Si no es el territorio correspondiente, lo deja sin cambios
+								});
+
+								// Guarda los territorios actualizados en el store
+								setStore({
+									datosDelJuego: {
+										...store.datosDelJuego, // Mantiene el resto de los datos del juego sin cambios
+										mapa: {
+											...store.datosDelJuego.mapa, // Mantiene el resto del mapa sin cambios
+											territorios_terrestres: territoriosActualizados // Actualiza la lista de territorios acuáticos
+										}
+									}
+								});
+							} 
 						}
 					}
 
@@ -416,7 +594,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				// Guarda el mapa actualizado en el store
 				setStore({
-					...store,
 					datosDelJuego: {
 						...store.datosDelJuego,
 						mapa: nuevoMapa
