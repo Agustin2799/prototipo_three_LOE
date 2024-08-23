@@ -1,25 +1,29 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 
-const MenuAgregarUbicacion = ({ mostrar }) => {
+const MenuAgregarTerritorio = ({ mostrar }) => {
   const { store, actions } = useContext(Context);
-  const [tipoUbicacion, setTipoUbicacion] = useState(null);
+  const [tipoTerritorio, setTipoTerritorio] = useState('terrestre');
   const [origen, setOrigen] = useState({ x: "", y: "" });
-  const [conexiones, setConexiones] = useState([]);
+  const [vertices, setVertices] = useState([]);
+
+  // useEffect(() => {
+  //   console.log(mostrar)
+  // },[mostrar])
 
   // Efecto para actualizar las coordenadas según coordsClickeadas
   useEffect(() => {
     const valuesCoords = store.coordsClickeadas
       ? store.coordsClickeadas
       : { x: 0, y: 0 };
-    if (!conexiones.length) {
-      // Si no hay conexiones, actualiza el origen
+    if (!vertices.length) {
+      // Si no hay vertices, actualiza el origen
       setOrigen(valuesCoords);
     } else {
-      // Si ya hay conexiones, actualiza la última conexión
-      const nuevasConexiones = [...conexiones];
-      nuevasConexiones[nuevasConexiones.length - 1] = valuesCoords;
-      setConexiones(nuevasConexiones);
+      // Si ya hay vertices, actualiza la última conexión
+      const nuevasvertices = [...vertices];
+      nuevasvertices[nuevasvertices.length - 1] = valuesCoords;
+      setVertices(nuevasvertices);
     }
   }, [store.coordsClickeadas]); // Ejecuta este efecto cada vez que coordsClickeadas cambie
 
@@ -31,38 +35,42 @@ const MenuAgregarUbicacion = ({ mostrar }) => {
     }));
   };
 
-  const modificarConexion = (index, e) => {
+  const modificarVertice = (index, e) => {
     const { name, value } = e.target;
-    const nuevasConexiones = [...conexiones];
-    nuevasConexiones[index] = {
-      ...nuevasConexiones[index],
+    const nuevasvertices = [...vertices];
+    nuevasvertices[index] = {
+      ...nuevasvertices[index],
       [name]: value === "" ? value : parseInt(value),
     };
-    setConexiones(nuevasConexiones);
+    setVertices(nuevasvertices);
   };
 
-  const agregarConexion = () => {
-      setConexiones([...conexiones, { x: "", y: "" }]);
+  const agregarVertice = () => {
+    setVertices([...vertices, { x: "", y: "" }]);
   };
 
-  const eliminarConexion = (index) => {
-    const nuevasConexiones = conexiones.filter((_, i) => i !== index);
-    setConexiones(nuevasConexiones);
+  const eliminarVertice = (index) => {
+    const nuevasvertices = vertices.filter((_, i) => i !== index);
+    setVertices(nuevasvertices);
   };
 
-  const modificarSeleccionado = (event) => {
-    setTipoUbicacion(event.target.value);
+    const modificarSeleccionado = (event) => {
+        console.log('me cambiaron')
+      console.log("target",event.target.value)
+    setTipoTerritorio(event.target.value);
   };
 
-  const agregarUbicacion = () => {
-      actions.agregarUbicacion(origen, conexiones, tipoUbicacion);
-      // Limpia el estado de conexiones después de agregar el territorio
-      setConexiones([]);
+    const agregarTerritorio = () => {
+      console.log("tate tipoTerritorio",tipoTerritorio)
+    actions.agregarTerritorio(origen, vertices, tipoTerritorio);
+      // Limpia el estado de vertices después de agregar el territorio
+      console.log(origen, vertices, tipoTerritorio)
+    setVertices([]);
   };
 
-  const eliminarUltimaUbicacion = () => {
-    if (tipoUbicacion) {
-      actions.eliminarUltimaUbicacion(tipoUbicacion);
+  const eliminarUltimoTerritorio = () => {
+    if (tipoTerritorio) {
+     // actions.eliminarUltimoTerritorio(tipoTerritorio);
     }
   };
 
@@ -76,10 +84,8 @@ const MenuAgregarUbicacion = ({ mostrar }) => {
         className="mt-1 bg-transparent border border-dark form-select form-select-sm color2 shadow-none"
         aria-label="Small select example"
         onChange={modificarSeleccionado}
+        value={tipoTerritorio} // Asegúrate de que el select refleje el estado actual
       >
-        <option className="bg-dark" value="">
-          Tipo de territorio
-        </option>
         <option className="bg-dark" value="terrestre">
           Terrestre
         </option>
@@ -92,7 +98,7 @@ const MenuAgregarUbicacion = ({ mostrar }) => {
       </select>
 
       <div className="container-fluid">
-        <p className="mt-2 mb-1 color2 w-100 p-0 ms-1">Conexiones</p>
+        <p className="mt-2 mb-1 color2 w-100 p-0 ms-1">vertices</p>
         <p className="color2 mb-1 text-center">Origen</p>
 
         <div className="input-group input-group-sm mb-3 justify-content-evenly mt-1">
@@ -140,7 +146,7 @@ const MenuAgregarUbicacion = ({ mostrar }) => {
           </div>
         </div>
 
-        {conexiones.map((conexion, index) => (
+        {vertices.map((conexion, index) => (
           <div key={index}>
             <p className="color2 mb-1 text-center">Conexión {index + 1}</p>
 
@@ -161,7 +167,7 @@ const MenuAgregarUbicacion = ({ mostrar }) => {
                       aria-describedby="inputGroup-sizing-sm"
                       name="x"
                       value={conexion.x || 0}
-                      onChange={(e) => modificarConexion(index, e)}
+                      onChange={(e) => modificarVertice(index, e)}
                       min="-Infinity"
                     />
                   </div>
@@ -181,7 +187,7 @@ const MenuAgregarUbicacion = ({ mostrar }) => {
                       aria-describedby="inputGroup-sizing-sm"
                       name="y"
                       value={conexion.y || 0}
-                      onChange={(e) => modificarConexion(index, e)}
+                      onChange={(e) => modificarVertice(index, e)}
                       min="-Infinity"
                     />
                   </div>
@@ -192,7 +198,7 @@ const MenuAgregarUbicacion = ({ mostrar }) => {
             <div className="col-12  d-flex justify-content-center w-row">
               <button
                 className="btn col-12 btn-ancho-especifico btn-outline-secondary btn-sm add mt-3 p-0 d-flex justify-content-center align-items-center pb-1"
-                onClick={() => eliminarConexion(index)}
+                onClick={() => eliminarVertice(index)}
               >
                 Eliminar
               </button>
@@ -200,32 +206,32 @@ const MenuAgregarUbicacion = ({ mostrar }) => {
           </div>
         ))}
 
-          <div className="col-12 d-flex justify-content-center row">
-            <button
-              className="btn ms-4 col-12 btn-outline-secondary btn-sm add mt-3 p-0 d-flex justify-content-center align-items-center pb-1"
-              onClick={agregarConexion}
-            >
-              Agregar Conexión
-            </button>
-          </div>
+        <div className="col-12 d-flex justify-content-center row">
+          <button
+            className="btn ms-4 col-12 btn-outline-secondary btn-sm add mt-3 p-0 d-flex justify-content-center align-items-center pb-1"
+            onClick={agregarVertice}
+          >
+            Agregar Vértice
+          </button>
+        </div>
       </div>
 
       <button
         type="button"
         className="btn btn-outline-secondary btn-sm add mt-3 p-0 d-flex justify-content-center align-items-center pb-1"
-        onClick={agregarUbicacion}
+        onClick={agregarTerritorio}
       >
-        Agregar territorio {tipoUbicacion}
+        Agregar territorio {tipoTerritorio}
       </button>
       <button
         type="button"
         className="btn btn-outline-secondary delete btn-sm mt-2 p-0 d-flex justify-content-center align-items-center pb-1"
-        onClick={eliminarUltimaUbicacion}
+        onClick={eliminarUltimoTerritorio}
       >
-        Eliminar último agregado - {tipoUbicacion}
+        Eliminar último agregado - {tipoTerritorio}
       </button>
     </div>
   );
 };
 
-export default MenuAgregarUbicacion;
+export default MenuAgregarTerritorio;

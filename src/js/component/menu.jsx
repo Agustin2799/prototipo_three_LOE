@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import MenuAgregarUbicacion from "./menuAgregarUbicacion.jsx";
 import MenuAgregarMarcador from "./menuAgregarMarcador.jsx";
+import MenuAgregarTerritorio from "./menuAgregarTerritorio.jsx";
 
 const Menu = () => {
   const { store, actions } = useContext(Context);
@@ -11,13 +12,20 @@ const Menu = () => {
     actions.changeBanderas("mostrar menu agregar ubicacion");
   };
   
+  //Cambiamos la bandera de menuAgregarTerritorio
+  const mostrarMenuAgregarTerritorio = () => {
+    actions.changeBanderas("mostrar menu agregar territorio")
+  }
+  
   //cambiamos la bandera del store para mostrar las conexiones
    const mostrarConexiones = () => {
      actions.changeBanderas("mostrar conexiones");
    };
   //Guardamos los cambios localmente
   const guardarCambios = () => {
-    actions.guardarDatosEnBackend();
+    actions.guardarDatosDelJuegoEnBackend();
+    actions.guardarMarcadoresEnBackend();
+
   }
   //Imprime los datos del juego en la consola.
   const imprimirDatos = () => {
@@ -56,6 +64,16 @@ const Menu = () => {
           type="checkbox"
           role="switch"
           id="flexSwitchCheckDefault"
+          onChange={mostrarConexiones}
+        />
+        <p className="col-12 m-0 color1">Mostrar Ubicaciones y Conexiones</p>
+      </div>
+      <div className="form-check form-switch ms-2">
+        <input
+          className="form-check-input"
+          type="checkbox"
+          role="switch"
+          id="flexSwitchCheckDefault"
           onChange={mostrarMenuAgregarMarcadores}
         />
         <p className="col-12 m-0 color1">Agregar marcadores</p>
@@ -67,9 +85,9 @@ const Menu = () => {
           type="checkbox"
           role="switch"
           id="flexSwitchCheckDefault"
-          onChange={mostrarConexiones}
+          onChange={mostrarMarcadores}
         />
-        <p className="col-12 m-0 color1">Mostrar Conexiones</p>
+        <p className="col-12 m-0 color1">Mostrar marcadores</p>
       </div>
       <div className="form-check form-switch ms-2">
         <input
@@ -77,11 +95,11 @@ const Menu = () => {
           type="checkbox"
           role="switch"
           id="flexSwitchCheckDefault"
-          onChange={mostrarMarcadores}
+          onChange={mostrarMenuAgregarTerritorio}
         />
-        <p className="col-12 m-0 color1">Mostrar marcadores</p>
+        <p className="col-12 m-0 color1">Agregar Territorio</p>
       </div>
-
+      <MenuAgregarTerritorio mostrar={store.banderas.menuAgregarTerritorio}/>
       <div className="col-12 d-flex flex-column align-items-center justify-content-center">
         <button
           type="button"

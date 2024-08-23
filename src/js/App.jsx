@@ -249,7 +249,7 @@ function App() {
             mostrar={store.banderas.mostrarConexiones}
           />
           {/* Dibuaja los territorios */}
-          <DibujaTerritorio />
+          <DibujaTerritorio mapa={store.datosDelJuego.mapa} />
           {/* Configuración de la cámara con posición, campo de visión y rotación */}
           <PerspectiveCamera
             ref={cameraRef}

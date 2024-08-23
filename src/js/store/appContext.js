@@ -35,7 +35,8 @@ const injectContext = PassedComponent => {
 			 * Es un buen lugar para hacer solicitudes AJAX o llamadas a APIs.
 			 * En lugar de usar setState directamente, se usan las acciones definidas en el store.
 			 */
-			state.actions.cargarDatosDesdeBackend(); // Llamamos a una acción para cargar datos desde el backend cuando el componente se monta.
+			state.actions.cargarDatosDelJuegoDesdeBackend(); // Llamamos a una acción para cargar datos desde el backend cuando el componente se monta.
+			state.actions.cargarMarcadoresDesdeBackend();
 		}, []); // Pasamos un array vacío como segunda dependencia, asegurando que este efecto solo se ejecute una vez.
 
 		// Retornamos el Context.Provider, que envuelve el componente pasado y lo provee con el estado global.

@@ -43,7 +43,7 @@ const DibujaPunto = ({ coordenadas, mostrar, tipo }) => {
         const material = new MeshBasicMaterial({
           color: "white",
           transparent: true,
-          opacity: 0.8, // Ajustar la transparencia
+          opacity: 0.7, // Ajustar la transparencia
         });
         const sphere = new Mesh(geometry, material);
         sphere.position.set(coords.x, coords.y, 0);
