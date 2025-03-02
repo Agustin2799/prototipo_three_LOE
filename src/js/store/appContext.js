@@ -6,24 +6,27 @@ export const Context = React.createContext(null);
 
 // Esta función se utiliza para inyectar el contexto global en cualquier componente que lo necesite.
 // Específicamente, se inyecta en el componente layout.js.
-const injectContext = PassedComponent => {
-	const StoreWrapper = props => {
+const injectContext = (PassedComponent) => {
+	// StoreWrapper es un componente de orden superior (HOC) que envuelve a PassedComponent y le proporciona el estado global.
+	// Se encarga de gestionar el estado y proporcionar el contexto a los componentes hijos.
+	const StoreWrapper = (props) => {
 		// Usamos useState para definir el estado inicial. Este estado incluye el store (almacén de datos global) y las acciones (funciones que pueden modificar el store).
 		const [state, setState] = useState(
 			getState({
 				// Pasamos tres funciones a getState: getStore, getActions, y setStore.
-				// getStore retorna la parte del estado correspondiente al store.
+				//Store retorna la parte del estado correspondiente al store.
 				getStore: () => state.store,
 				// getActions retorna la parte del estado correspondiente a las acciones.
 				getActions: () => state.actions,
 				// setStore permite actualizar el store. Al llamarla, se mezcla el store actual con las actualizaciones que se proporcionen.
-				setStore: updatedStore =>
+				setStore: (updatedStore) =>
 					setState({
 						// Actualizamos el store fusionando el store existente con el updatedStore.
 						store: Object.assign(state.store, updatedStore),
 						// Las acciones permanecen inalteradas en esta actualización.
-						actions: { ...state.actions }
-					})
+						
+						actions: { ...state.actions },
+					}),
 			})
 		);
 
@@ -43,11 +46,14 @@ const injectContext = PassedComponent => {
 		// Ahora, cualquier componente dentro de este provider podrá acceder al estado y a las acciones mediante el contexto.
 		return (
 			<Context.Provider value={state}>
-				<PassedComponent {...props} /> {/* Renderizamos el componente que fue pasado como argumento, inyectándole el contexto global. */}
+				{/* Renderizamos el componente que fue pasado como argumento, inyectándole el contexto global. */}
+				<PassedComponent {...props} />
 			</Context.Provider>
 		);
 	};
-	return StoreWrapper; // Devolvemos el componente StoreWrapper, que ahora inyecta el contexto global.
+
+	// Devolvemos el componente StoreWrapper, que ahora inyecta el contexto global.
+	return StoreWrapper;
 };
 
 export default injectContext; // Exportamos la función injectContext para que pueda ser usada en otras partes de la aplicación.
